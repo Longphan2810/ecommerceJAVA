@@ -23,9 +23,48 @@ public class indexController {
 	@GetMapping("/admin/sanpham")
 	public String getAdminSanPham() {
 
-		return "adminViews/html/template";
+		return "adminViews/html/QuanLySanPham";
 
 	}
+	@GetMapping("/admin/donhang")
+	public String getAdmindonhang() {
+
+		return "adminViews/html/QuanLyDonHang";
+
+	}
+	@GetMapping("/admin/nguoidung")
+	public String getAdminnguoidung() {
+
+		return "adminViews/html/QuanLyNguoiDung";
+
+	}
+	@GetMapping("/admin/canhan")
+	public String getAdmincanhan() {
+
+		return "adminViews/html/QuanLyCaNhan";
+
+	}
+	
+	@GetMapping("/admin/dssanpham")
+	public String getAdmindsSanPham() {
+
+		return "adminViews/html/DanhSachSanPham";
+
+	}
+	
+	@GetMapping("/admin/dsnguoidung")
+	public String getAdmindsNguoiDung() {
+
+		return "adminViews/html/DanhSachNguoiDung";
+
+	}
+	@GetMapping("/admin/dsDonHang")
+	public String getAdmindsDonHang() {
+
+		return "adminViews/html/DanhSachDonHang";
+
+	}
+	
 	@GetMapping("/admin/login")
 	public String getAdminLogin() {
 

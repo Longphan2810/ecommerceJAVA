@@ -75,79 +75,70 @@
 			<!-- body  -->
 			<div class="container-fluid">
 
-				<div class="shadow-lg border" style="height: 800px">
+				<div class="shadow-lg border" >
 
 					<div class="container m-3">
-						<h3>Quản lý Sản phẩm</h3>
+						<h3>Quản lý Người Dùng</h3>
 
 						<form action="">
 							<div class="row">
 
-								<!-- left -->
-								<div class="col-5">
-
-									<img src="../img/cat-5.jpg"
-										class="img-thumbnail border mx-auto" alt="..."
-										style="height: 260px; width: 400px">
-									<div class="input-group my-3 ">
-										<label class="input-group-text" for="inputGroupFile01">Upload
-											Image</label> <input type="file" class="form-control"
-											id="inputGroupFile01">
-									</div>
-
-								</div>
+							
 								<!-- Right -->
-								<div class="col-6">
+								<div class="col-11">
 
 									<div class="mb-3">
 										<label for="exampleFormControlInput1" class="form-label">
-											Tên sản phẩm</label> <input type="email" class="form-control"
-											id="exampleFormControlInput1" placeholder="name@example.com">
+											Tên Người Dùng</label> <input type="text" class="form-control"
+											id="exampleFormControlInput1" readonly="readonly" placeholder="Tên người dùng">
 									</div>
 
 									<div class="row">
 										<div class="col-6">
 											<label for="exampleFormControlInput1" class="form-label">
-												Giá </label> <input type="text" class="form-control" placeholder=""
+												Email </label> <input type="email" class="form-control" placeholder=""
 												aria-label="First name">
 										</div>
-										<div class="col-3">
+										<div class="col-6">
 											<label for="exampleFormControlInput1" class="form-label">
-												Số lượng</label> <input type="text" class="form-control"
+												Number phone</label> <input type="text" class="form-control"
 												placeholder="" aria-label="Last name">
 										</div>
-										<div class="col-3">
+										<div class="col-6">
 											<label for="exampleFormControlInput1" class="form-label">
-												Giảm giá</label> <input type="text" class="form-control"
+												Địa chỉ</label> <input type="text" class="form-control"
 												placeholder="%" aria-label="Last name">
 										</div>
+										<div class="col-6">
+											<label for="exampleFormControlInput1" class="form-label">
+												Ngày Sinh</label> <input type="Date" class="form-control"
+												placeholder="%" aria-label="Last name">
+										</div>
+										
 									</div>
 
 									<div class="mb-3 mt-3">
 										<label for="exampleFormControlInput1" class="form-label">
-											Loại mặt hàng</label> <select class="form-select"
+											Trạng Thái</label> <select class="form-select"
 											aria-label="Default select example">
-											<option selected>Open this select menu</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
+											<option selected>Active</option>
+											<option value="1">Ban</option>
+											<option value="3">Waiting</option>
 										</select>
 
 									</div>
 									<div class="mb-3 mt-3">
 										<label for="exampleFormControlInput1" class="form-label">
-											Trạng thái</label>
+											Quyền Hạn</label>
 										<div class="form-check mx-3 form-check-inline">
 											<input class="form-check-input" type="radio"
 												name="inlineRadioOptions" id="inlineRadio1" value="option1">
-											<label class="form-check-label" for="inlineRadio1">Đang
-												mở bán</label>
+											<label class="form-check-label" for="inlineRadio1">Admin</label>
 										</div>
 										<div class="form-check mx-3 form-check-inline">
 											<input class="form-check-input" type="radio"
 												name="inlineRadioOptions" id="inlineRadio2" value="option2">
-											<label class="form-check-label" for="inlineRadio2">Ngừng
-												Kinh Doanh</label>
+											<label class="form-check-label" for="inlineRadio2">User</label>
 										</div>
 
 									</div>
@@ -157,20 +148,11 @@
 
 
 								</div>
-								<!-- bottom -->
-								<div class="col-11">
-
-									<div class="mb-3">
-										<label for="exampleFormControlTextarea1"  class="form-label">Example
-											textarea</label>
-										<textarea class="form-control"id="exampleFormControlTextarea1" rows="10" ></textarea>
-									</div>
-								</div>
+							
 
 						<div class="col-11 text-center">
 						<button type="button" class="btn btn-outline-primary mx-2">Thêm</button>
 						<button type="button" class="btn btn-outline-primary mx-2">Cập Nhật</button>
-						<button type="button" class="btn btn-outline-primary mx-2">Xoá</button>
 						<button type="button" class="btn btn-outline-primary mx-2">Làm Mới</button>
 						
 						</div>
