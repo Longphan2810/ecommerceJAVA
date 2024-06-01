@@ -7,30 +7,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>Modernize </title>
 <link rel="shortcut icon" type="image/png"
-	href="../assets/images/logos/favicon.png" />
-<link rel="stylesheet" href="../assets/css/styles.min.css" />
-
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-	crossorigin="anonymous"></script>
-
-<!-- Font Awesome -->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-	rel="stylesheet">
-
-
-
-
+	href="/assets/images/logos/favicon.png" />
+<link rel="stylesheet" href="/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -39,9 +19,7 @@
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
 		<!-- Sidebar Start -->
-			<!-- Sidebar Start -->
 		<%@ include file="./sidebar/SidebarAdmin.jsp"%>
-		<!--  Sidebar End -->
 		<!--  Sidebar End -->
 		<!--  Main wrapper -->
 		<div class="body-wrapper">
@@ -64,7 +42,7 @@
 							<li class="nav-item dropdown"><a
 								class="nav-link nav-icon-hover" href="javascript:void(0)"
 								id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="../assets/images/profile/user-1.jpg" alt=""
+									<img src="/assets/images/profile/user-1.jpg" alt=""
 									width="35" height="35" class="rounded-circle">
 							</a>
 								<div
@@ -368,14 +346,20 @@
 
 			</div>
 		</div>
+		
+		
+		
+		
+		
+		
 	</div>
-	<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-	<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="../assets/js/sidebarmenu.js"></script>
-	<script src="../assets/js/app.min.js"></script>
-	<script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-	<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-	<script src="../assets/js/dashboard.js"></script>
+	<script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/js/sidebarmenu.js"></script>
+	<script src="/assets/js/app.min.js"></script>
+	<script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+	<script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+	<script src="/assets/js/dashboard.js"></script>
 </body>
 
 </html>

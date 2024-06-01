@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 
 <!doctype html>
 <html lang="en">
@@ -7,10 +10,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize </title>
+<title>Modernize</title>
 <link rel="shortcut icon" type="image/png"
 	href="/assets/images/logos/favicon.png" />
 <link rel="stylesheet" href="/assets/css/styles.min.css" />
+
+
 </head>
 
 <body>
@@ -19,7 +24,7 @@
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
 		<!-- Sidebar Start -->
-			<!-- Sidebar Start -->
+		<!-- Sidebar Start -->
 		<%@ include file="./sidebar/SidebarAdmin.jsp"%>
 		<!--  Sidebar End -->
 		<!--  Sidebar End -->
@@ -44,8 +49,8 @@
 							<li class="nav-item dropdown"><a
 								class="nav-link nav-icon-hover" href="javascript:void(0)"
 								id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="/assets/images/profile/user-1.jpg" alt=""
-									width="35" height="35" class="rounded-circle">
+									<img src="/assets/images/profile/user-1.jpg" alt="" width="35"
+									height="35" class="rounded-circle">
 							</a>
 								<div
 									class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
@@ -75,90 +80,105 @@
 			<!-- body  -->
 			<div class="container-fluid">
 
-				<div class="shadow-lg border" >
+				<div class="shadow-lg border">
 
 					<div class="container m-3">
-						<h3>Quản lý Người Dùng</h3>
+						<h3>Quản lý Loại Sản phẩm</h3>
 
-						<form action="">
+						<form:form action="/admin/category" method="post"
+							modelAttribute="category">
 							<div class="row">
 
-							
-								<!-- Right -->
 								<div class="col-11">
+
 
 									<div class="mb-3">
 										<label for="exampleFormControlInput1" class="form-label">
-											Tên Người Dùng</label> <input type="text" class="form-control"
-											id="exampleFormControlInput1" readonly="readonly" placeholder="Tên người dùng">
+											Mã Loại sản phẩm</label> <input type="number" name="idCategory"
+											value="${category.idCategory}" readonly="readonly"
+											class="form-control" id="exampleFormControlInput1"
+											placeholder="Id Category">
 									</div>
 
-									<div class="row">
-										<div class="col-6">
-											<label for="exampleFormControlInput1" class="form-label">
-												Email </label> <input type="email" class="form-control" placeholder=""
-												aria-label="First name">
-										</div>
-										<div class="col-6">
-											<label for="exampleFormControlInput1" class="form-label">
-												Number phone</label> <input type="text" class="form-control"
-												placeholder="" aria-label="Last name">
-										</div>
-										<div class="col-6">
-											<label for="exampleFormControlInput1" class="form-label">
-												Địa chỉ</label> <input type="text" class="form-control"
-												placeholder="%" aria-label="Last name">
-										</div>
-										<div class="col-6">
-											<label for="exampleFormControlInput1" class="form-label">
-												Ngày Sinh</label> <input type="Date" class="form-control"
-												placeholder="%" aria-label="Last name">
-										</div>
-										
-									</div>
-
-									<div class="mb-3 mt-3">
+									<div class="mb-3">
 										<label for="exampleFormControlInput1" class="form-label">
-											Trạng Thái</label> <select class="form-select"
-											aria-label="Default select example">
-											<option selected>Active</option>
-											<option value="1">Ban</option>
-											<option value="3">Waiting</option>
-										</select>
+											Tên Loại sản phẩm</label> <input type="text" name="name"
+											value="${category.name}" class="form-control"
+											id="exampleFormControlInput1"
+											placeholder="Quan abc, Ao abc ,.."> <span
+											class="mx-3"> <form:errors path="name"
+												cssStyle="color:red;"></form:errors>
+										</span>
 
 									</div>
-									<div class="mb-3 mt-3">
-										<label for="exampleFormControlInput1" class="form-label">
-											Quyền Hạn</label>
-										<div class="form-check mx-3 form-check-inline">
-											<input class="form-check-input" type="radio"
-												name="inlineRadioOptions" id="inlineRadio1" value="option1">
-											<label class="form-check-label" for="inlineRadio1">Admin</label>
-										</div>
-										<div class="form-check mx-3 form-check-inline">
-											<input class="form-check-input" type="radio"
-												name="inlineRadioOptions" id="inlineRadio2" value="option2">
-											<label class="form-check-label" for="inlineRadio2">User</label>
-										</div>
-
-									</div>
-
 
 
 
 
 								</div>
-							
 
-						<div class="col-11 text-center">
-						<button type="button" class="btn btn-outline-primary mx-2">Thêm</button>
-						<button type="button" class="btn btn-outline-primary mx-2">Cập Nhật</button>
-						<button type="button" class="btn btn-outline-primary mx-2">Làm Mới</button>
-						
-						</div>
+								<div class="col-11 text-center mb-3">
+									<button type="submit" formaction="/admin/category/add"
+										class="btn btn-outline-primary mx-2">Thêm</button>
+									<button type="submit" formaction="/admin/category/saveOrUpdate"
+										class="btn btn-outline-primary mx-2">Cập Nhật</button>
+									<button type="submit" formaction="/admin/category/delete"
+										class="btn btn-outline-primary mx-2">Xoá</button>
+									<button type="submit" formaction="/admin/category"
+										class="btn btn-outline-primary mx-2">Làm Mới</button>
+
+								</div>
+								</form:form>
+								<form  action="/admin/category/findbyname" method="get" role="search">
+								<div class=" col-12 row my-3">
+									
+									<div class="col-9 mx-auto">
+										<input class="form-control me-2" type="text"
+											placeholder="Search by name" name="name" aria-label="Search">
+									</div>
+									<div class="col-3 text-center">
+										<button class="btn btn-outline-success" type="submit">Search</button>
+									</div>
+								
+								</div>
+								
+									</form>
+
+								<!-- Table -->
+								<div class="col-12 mx-auto"
+									style="overflow-y: scroll; height: 500px;">
+
+									<table class="table border shadow">
+										<thead>
+											<tr>
+												<th scope="col">ID</th>
+												<th scope="col">Name</th>
+												<th scope="col">Action</th>
+
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="cate" items="${listCategory}">
+
+												<tr>
+													<th scope="row">${cate.idCategory}</th>
+													<td>${cate.name}</td>
+													<td><a href="/admin/category/edit/${cate.idCategory}">Edit</a></td>
+
+												</tr>
+
+											</c:forEach>
+
+
+
+										</tbody>
+									</table>
+								</div>
+
+
 
 							</div>
-						</form>
+						
 
 
 
@@ -172,8 +192,30 @@
 
 
 			</div>
+
+
+
+
+
 		</div>
 	</div>
+
+	<!--  thong bao -->
+
+	<div class="toast-container  position-fixed bottom-0 end-0 p-3">
+		<div id="liveToast" class="toast ${message!=null?'show':''}"
+			role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<strong class="me-auto">Thông báo</strong>
+
+				<button type="button" class="btn-close" data-bs-dismiss="toast"
+					aria-label="Close"></button>
+			</div>
+			<div class="toast-body">${message}</div>
+		</div>
+	</div>
+
+
 	<script src="/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/assets/js/sidebarmenu.js"></script>

@@ -20,24 +20,16 @@ public class indexController {
 
 	}
 	
-	@GetMapping("/admin/sanpham")
-	public String getAdminSanPham() {
+	@GetMapping("/adminfix")
+	public String getAdmin2() {
 
-		return "adminViews/html/QuanLySanPham";
-
-	}
-	@GetMapping("/admin/donhang")
-	public String getAdmindonhang() {
-
-		return "adminViews/html/QuanLyDonHang";
+		return "adminViews/index";
 
 	}
-	@GetMapping("/admin/nguoidung")
-	public String getAdminnguoidung() {
-
-		return "adminViews/html/QuanLyNguoiDung";
-
-	}
+	
+	
+	
+	
 	@GetMapping("/admin/canhan")
 	public String getAdmincanhan() {
 
@@ -45,25 +37,10 @@ public class indexController {
 
 	}
 	
-	@GetMapping("/admin/dssanpham")
-	public String getAdmindsSanPham() {
 
-		return "adminViews/html/DanhSachSanPham";
-
-	}
 	
-	@GetMapping("/admin/dsnguoidung")
-	public String getAdmindsNguoiDung() {
+	
 
-		return "adminViews/html/DanhSachNguoiDung";
-
-	}
-	@GetMapping("/admin/dsDonHang")
-	public String getAdmindsDonHang() {
-
-		return "adminViews/html/DanhSachDonHang";
-
-	}
 	
 	@GetMapping("/admin/login")
 	public String getAdminLogin() {
@@ -72,13 +49,13 @@ public class indexController {
 
 	}
 	
-	@GetMapping("/checkout")
+	@GetMapping("/checkout/test1/test2/test3")
 	public String getCheckout() {
 
 		return "checkout";
 
 	}
-	@GetMapping("/chitietdon")
+	@GetMapping("/chitietdon/test1/test2/test3")
 	public String getchitietdon() {
 
 		return "chiTietDonCostumer";

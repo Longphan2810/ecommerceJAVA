@@ -7,10 +7,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>Modernize</title>
 <link rel="shortcut icon" type="image/png"
-	href="../assets/images/logos/favicon.png" />
-<link rel="stylesheet" href="../assets/css/styles.min.css" />
+	href="/assets/images/logos/favicon.png" />
+<link rel="stylesheet" href="/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -19,7 +19,7 @@
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
 		<!-- Sidebar Start -->
-			<!-- Sidebar Start -->
+		<!-- Sidebar Start -->
 		<%@ include file="./sidebar/SidebarAdmin.jsp"%>
 		<!--  Sidebar End -->
 		<!--  Sidebar End -->
@@ -44,7 +44,7 @@
 							<li class="nav-item dropdown"><a
 								class="nav-link nav-icon-hover" href="javascript:void(0)"
 								id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="../assets/images/profile/user-1.jpg" alt=""
+									<img src="/assets/images/profile/user-1.jpg" alt=""
 									width="35" height="35" class="rounded-circle">
 							</a>
 								<div
@@ -86,8 +86,8 @@
 								<!-- left -->
 								<div class="col-5">
 
-									<img src="../img/cat-5.jpg"
-										class="img-thumbnail border mx-auto" alt="..."
+									<img src="/img/cat-5.jpg"
+										class="img-thumbnail border mx-auto" alt="."
 										style="height: 260px; width: 400px">
 									<div class="input-group my-3 ">
 										<label class="input-group-text" for="inputGroupFile01">Upload
@@ -111,16 +111,51 @@
 												Giá </label> <input type="text" class="form-control" placeholder=""
 												aria-label="First name">
 										</div>
-										<div class="col-3">
-											<label for="exampleFormControlInput1" class="form-label">
-												Số lượng</label> <input type="text" class="form-control"
-												placeholder="" aria-label="Last name">
-										</div>
-										<div class="col-3">
+
+										<div class="col-6">
 											<label for="exampleFormControlInput1" class="form-label">
 												Giảm giá</label> <input type="text" class="form-control"
 												placeholder="%" aria-label="Last name">
 										</div>
+
+										<div class="col-12">
+										<label for="exampleFormControlInput1" class="form-label">
+												So Luong theo size</label>
+										
+										<div class="col-12 row"> 
+												
+										<!-- So Luong theo size -->
+										
+										
+										<div class="form-floating mb-3 col-3">
+											<input type="number" min="0" class="form-control" id="floatingInput"
+												placeholder="S"> <label
+												for="floatingInput" > <span class="mx-4"> S </span></label>
+										</div>
+										<div class="form-floating mb-3 col-3">
+											<input type="number" class="form-control" id="floatingInput"
+												placeholder="M"> <label
+												for="floatingInput"> <span class="mx-4"> M </span></label>
+										</div>
+										<div class="form-floating mb-3 col-3">
+											<input type="number" class="form-control" id="floatingInput"
+												placeholder="L"> <label
+												for="floatingInput"> <span class="mx-4"> L </span></label>
+										</div>
+										<div class="form-floating mb-3 col-3">
+											<input type="number" class="form-control" id="floatingInput"
+												placeholder="S"> <label
+												for="floatingInput"><span class="mx-4"> XL </span> </label>
+										</div>
+										
+										
+										
+										<!-- So Luong theo size -->
+										
+										</div>
+										
+										</div>
+
 									</div>
 
 									<div class="mb-3 mt-3">
@@ -161,19 +196,22 @@
 								<div class="col-11">
 
 									<div class="mb-3">
-										<label for="exampleFormControlTextarea1"  class="form-label">Example
+										<label for="exampleFormControlTextarea1" class="form-label">Example
 											textarea</label>
-										<textarea class="form-control"id="exampleFormControlTextarea1" rows="10" ></textarea>
+										<textarea class="form-control"
+											id="exampleFormControlTextarea1" rows="10"></textarea>
 									</div>
 								</div>
 
-						<div class="col-11 text-center">
-						<button type="button" class="btn btn-outline-primary mx-2">Thêm</button>
-						<button type="button" class="btn btn-outline-primary mx-2">Cập Nhật</button>
-						<button type="button" class="btn btn-outline-primary mx-2">Xoá</button>
-						<button type="button" class="btn btn-outline-primary mx-2">Làm Mới</button>
-						
-						</div>
+								<div class="col-11 text-center">
+									<button type="button" class="btn btn-outline-primary mx-2">Thêm</button>
+									<button type="button" class="btn btn-outline-primary mx-2">Cập
+										Nhật</button>
+									<button type="button" class="btn btn-outline-primary mx-2">Xoá</button>
+									<button type="button" class="btn btn-outline-primary mx-2">Làm
+										Mới</button>
+
+								</div>
 
 							</div>
 						</form>
@@ -192,13 +230,13 @@
 			</div>
 		</div>
 	</div>
-	<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-	<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="../assets/js/sidebarmenu.js"></script>
-	<script src="../assets/js/app.min.js"></script>
-	<script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-	<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-	<script src="../assets/js/dashboard.js"></script>
+	<script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/js/sidebarmenu.js"></script>
+	<script src="/assets/js/app.min.js"></script>
+	<script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+	<script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+	<script src="/assets/js/dashboard.js"></script>
 </body>
 
 </html>

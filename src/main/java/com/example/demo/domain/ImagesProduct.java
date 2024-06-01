@@ -11,20 +11,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @AllArgsConstructor @NoArgsConstructor
-@Entity @Table
-public class OrderDetail {
+@Data @NoArgsConstructor @AllArgsConstructor
+@Entity @Table(name = "ImagesProduct")
+public class ImagesProduct {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idOrderDetail;
+	private int idImageProduct;
 
-	private int quanlity;
-	private float price;
+	private String nameImage;
+	
 	
 	@ManyToOne()
-	@JoinColumn(name = "id_order")
-	private Orders order;
-	@ManyToOne()
-	@JoinColumn(name = "id_product")
-	private Product product;
+	@JoinColumn(name="id_ProductDetail")
+	private ProductDetail productDetail;
 	
 }
