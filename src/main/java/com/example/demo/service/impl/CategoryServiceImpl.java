@@ -28,7 +28,17 @@ public class CategoryServiceImpl implements CategoryServiceInterface{
 
 	@SuppressWarnings("deprecation")
 	public Category getById(Integer id) {
-		return categoryRepository.getById(id);
+		
+		try {return categoryRepository.getById(id);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+		
+		
+		
+		
 	}
 
 	
