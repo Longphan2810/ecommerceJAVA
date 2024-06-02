@@ -1,23 +1,92 @@
 package com.example.demo.controller.admin;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.domain.Users;
+import com.example.demo.service.ParamService;
+import com.example.demo.service.impl.UserServiceImpl;
 
 @Controller
 public class ManageUserController {
 
-	@GetMapping("/admin/list-user")
-	public String getAdmindsNguoiDung() {
+	@Autowired
+	UserServiceImpl userServiceImpl;
+	
+	@Autowired
+	ParamService paramService;
+	
+	@RequestMapping("/admin/list-user")
+	public String getAdmindsNguoiDung(Model model,@RequestParam("p") Optional<Integer> p) {
 
+		Pageable pageable = PageRequest.of(p.orElse(0), 10);
+		Page<Users> page = userServiceImpl.findAll(pageable);
+		
+		String keywordName = paramService.getString("keywordName", "");
+		String keywordEmail = paramService.getString("keywordEmail", "");
+		
+		if(keywordEmail.trim().equals("")||keywordName.trim().equals("")) {
+			
+			return "forward:/admin/list-user/findByKeyWord";
+		}
+
+		System.out.println("keyName"+keywordName);
+		System.out.println("keyEmail"+keywordEmail);
+		
+		
+		model.addAttribute("pageUsers", page);
+		
+		return "adminViews/html/DanhSachNguoiDung";
+		
+
+	}
+	
+	@RequestMapping("/admin/list-user/findByKeyWord")
+	public String getListUserByKeyword(Model model,@RequestParam("p") Optional<Integer> p) {
+
+		String keywordName = paramService.getString("keywordName", "");
+		String keywordEmail = paramService.getString("keywordEmail", "");
+		
+		Pageable pageable = PageRequest.of(p.orElse(0), 10);
+		Page<Users> page = userServiceImpl.findAllByNameLikeAndEmailLike("%"+keywordName+"%", "%"+keywordEmail+"%", pageable);
+		
+		
+		model.addAttribute("keywordName", keywordName);
+		model.addAttribute("keywordEmail", keywordEmail);
+		model.addAttribute("pageUsers", page);
+		
 		return "adminViews/html/DanhSachNguoiDung";
 
 	}
+	
+	
+	
+	
 	
 	@GetMapping("/admin/user")
 	public String getAdminnguoidung() {
 
 		return "adminViews/html/QuanLyNguoiDung";
 
+	}
+	
+	@GetMapping("/admin/user/edit/{id}")
+	public String editUser(@PathVariable("id") int idUser,Model model) {
+		Users userDB = userServiceImpl.getById(idUser);
+		
+		model.addAttribute("userDB", userDB);
+		return "adminViews/html/QuanLyNguoiDung";
 	}
 	
 }

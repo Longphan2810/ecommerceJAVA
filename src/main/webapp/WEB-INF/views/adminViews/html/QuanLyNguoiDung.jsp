@@ -89,29 +89,29 @@
 
 									<div class="mb-3">
 										<label for="exampleFormControlInput1" class="form-label">
-											Tên Người Dùng</label> <input type="text" class="form-control"
+											Tên Người Dùng</label> <input type="text" value="${userDB.name}" class="form-control"
 											id="exampleFormControlInput1" readonly="readonly" placeholder="Tên người dùng">
 									</div>
 
 									<div class="row">
 										<div class="col-6">
 											<label for="exampleFormControlInput1" class="form-label">
-												Email </label> <input type="email" class="form-control" placeholder=""
+												Email </label> <input type="email" value="${userDB.email}" readonly="readonly" class="form-control" placeholder=""
 												aria-label="First name">
 										</div>
 										<div class="col-6">
 											<label for="exampleFormControlInput1" class="form-label">
-												Number phone</label> <input type="text" class="form-control"
+												Number phone</label> <input type="text" value="${userDB.phone}" readonly="readonly" class="form-control"
 												placeholder="" aria-label="Last name">
 										</div>
 										<div class="col-6">
 											<label for="exampleFormControlInput1" class="form-label">
-												Địa chỉ</label> <input type="text" class="form-control"
+												passport</label> <input type="text" value="${userDB.passport}" readonly="readonly" class="form-control"
 												placeholder="%" aria-label="Last name">
 										</div>
 										<div class="col-6">
 											<label for="exampleFormControlInput1" class="form-label">
-												Ngày Sinh</label> <input type="Date" class="form-control"
+												Ngày Sinh</label> <input type="text" value="${userDB.birhday}" readonly="readonly" class="form-control"
 												placeholder="%" aria-label="Last name">
 										</div>
 										
@@ -132,12 +132,12 @@
 											Quyền Hạn</label>
 										<div class="form-check mx-3 form-check-inline">
 											<input class="form-check-input" type="radio"
-												name="inlineRadioOptions" id="inlineRadio1" value="option1">
+												name="role" id="inlineRadio1" ${userDB.role==true?'checked':'' } value="${userDB.role}">
 											<label class="form-check-label" for="inlineRadio1">Admin</label>
 										</div>
 										<div class="form-check mx-3 form-check-inline">
 											<input class="form-check-input" type="radio"
-												name="inlineRadioOptions" id="inlineRadio2" value="option2">
+												name="role" id="inlineRadio2" ${userDB.role==false?'checked':'' } value="${userDB.role}" >
 											<label class="form-check-label" for="inlineRadio2">User</label>
 										</div>
 

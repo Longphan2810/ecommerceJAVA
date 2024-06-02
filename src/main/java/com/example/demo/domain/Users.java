@@ -21,8 +21,9 @@ public class Users {
 	private String password;
 	private String email;
 	private Date birhday;
-	private int phone;
+	private String phone;
 	private String status;
+	private String passport;
 	private String name;
 	private boolean role;
 	

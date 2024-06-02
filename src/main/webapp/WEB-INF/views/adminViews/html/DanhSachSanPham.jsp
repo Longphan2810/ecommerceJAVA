@@ -84,18 +84,17 @@
 						<form action="/admin/list-product">
 
 							<div class="row g-3">
-								<div class="col-8">
+								<div class="col-10">
 									<input type="text" class="form-control"
 										name="keywords" value="${keywords}"
 										placeholder="Tìm Tên sản phẩm"
 										aria-label="First name">
 								</div>
 								
-								<div class="col-4">
+								<div class="col-2">
 									<button type="submit" class="btn btn-secondary mx-2">Tìm
 										kiếm</button>
-									<button type="submit" formaction="/admin/list-product" formmethod="post" class="btn btn-outline-primary  mx-2">Làm
-										Mới</button>
+								
 								</div>
 
 
@@ -162,6 +161,7 @@
 											<li class="page-item">
 											<a class="page-link" ${pageProduct.number<pageProduct.totalPages-1?'':'onclick="return false;"'} href="/admin/list-product?p=${pageProduct.number+1}&&keywords=${keywords}">Next</a>
 											</li>
+										
 										</ul>
 										
 									</nav>

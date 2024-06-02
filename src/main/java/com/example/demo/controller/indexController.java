@@ -16,18 +16,10 @@ public class indexController {
 	@GetMapping("/admin")
 	public String getAdmin() {
 
-		return "adminViews/html/index";
+		return "adminViews/html/QuanLySanPham";
 
 	}
-	
-	@GetMapping("/adminfix")
-	public String getAdmin2() {
-
-		return "adminViews/index";
-
-	}
-	
-	
+		
 	
 	
 	@GetMapping("/admin/canhan")

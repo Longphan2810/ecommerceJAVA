@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 
 <!doctype html>
 <html lang="en">
@@ -78,29 +80,30 @@
 					<div class="container m-3">
 						<h3>Danh Sách Sản Phẩm</h3>
 						<!-- form tim kiem -->
-						<form action="">
+						<form action="/admin/list-user">
 
 							<div class="row g-3">
-								<div class="col-6">
+								<div class="col-5">
 									<input type="text" class="form-control"
-										placeholder="Tìm Tên sản phẩm, mã sản phẩm"
+										placeholder="Tìm Tên người dùng" value="${keywordName}"
+										name="keywordName"
 										aria-label="First name">
 								</div>
-								<div class="col-3">
-									<input type="date" class="form-control"
-										
+								<div class="col-5">
+									<input type="email" class="form-control"
+										placeholder="Tìm email người dùng" value="${keywordEmail}"
+										name="keywordEmail"
 										aria-label="First name">
 								</div>
-								<div class="col-3">
-									<button type="button" class="btn btn-secondary mx-2">Tìm
+								<div class="col-2">
+									<button type="submit" formaction="/admin/list-user" formmethod="get" class="btn btn-secondary mx-2">Tìm
 										kiếm</button>
-									<button type="button" class="btn btn-outline-primary  mx-2">Làm
-										Mới</button>
+									
 								</div>
 
 
 								<div class="col-12">
-									<h4>999 Người dùng</h4>
+									<h4> ${pageUsers.totalElements} Người dùng trong hệ thống</h4>
 								</div>
 								<!-- table -->
 								<div class="col-11 mx-auto" style="overflow-y: scroll; height: 500px;">
@@ -118,50 +121,25 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												
-												<td >Nguyen Van A</td>
-												<td>nguyenvana@gmail.com</td>
-												<td>0975465789</td>
-												<td>02/02/2002</td>
-												<td>active</td>
-												<td>
-												<button type="button" class="btn btn-outline-primary">Chỉnh sửa</button>
-												</td>
-											</tr>
+											
+											<c:forEach var="user" items="${pageUsers.content}">
+											
 												<tr>
 												
-												<td >Nguyen Van A</td>
-												<td>nguyenvana@gmail.com</td>
-												<td>0975465789</td>
-												<td>02/02/2002</td>
-												<td>active</td>
+												<td style='width: 20%;'>${user.name}</td>
+												<td>${user.email}</td>
+												<td>${user.phone}</td>
+												<td>${user.birhday}</td>
+												<td>${user.status}</td>
 												<td>
-												<button type="button" class="btn btn-outline-primary">Chỉnh sửa</button>
+												<a type="button" href="/admin/user/edit/${user.idUser}" class="btn btn-outline-primary"> sửa</a>
 												</td>
 											</tr>
-												<tr>
+											
+											</c:forEach>
+											
+											
 												
-												<td >Nguyen Van A</td>
-												<td>nguyenvana@gmail.com</td>
-												<td>0975465789</td>
-												<td>02/02/2002</td>
-												<td>active</td>
-												<td>
-												<button type="button" class="btn btn-outline-primary">Chỉnh sửa</button>
-												</td>
-											</tr>
-												<tr>
-												
-												<td >Nguyen Van A</td>
-												<td>nguyenvana@gmail.com</td>
-												<td>0975465789</td>
-												<td>02/02/2002</td>
-												<td>active</td>
-												<td>
-												<button type="button" class="btn btn-outline-primary">Chỉnh sửa</button>
-												</td>
-											</tr>
 										</tbody>
 									</table>
 
@@ -173,11 +151,20 @@
 
 									<nav aria-label="Page navigation example mx-auto">
 										<ul class="pagination">
-											<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#">Next</a></li>
+									
+										<li class="page-item">
+											<a class="page-link" ${pageUsers.number-1>=0?'':'onclick="return false;"'} href="/admin/list-user?p=${pageUsers.number-1}&&keywordName=${keywordName}&&keywordEmail=${keywordEmail}">Previous</a>
+											</li>
+										
+											<c:forEach begin="1"  var="i" step="1" end="${pageUsers.totalPages}">
+											<li class="page-item"><a class="page-link" href="/admin/list-user?p=${i-1}&&keywordName=${keywordName}&&keywordEmail=${keywordEmail}">${i}</a></li>	
+											</c:forEach>
+										
+											<li class="page-item">
+											<a class="page-link" ${pageUsers.number<pageUsers.totalPages-1?'':'onclick="return false;"'} href="/admin/list-user?p=${pageUsers.number+1}&&keywordName=${keywordName}&&keywordEmail=${keywordEmail}">Next</a>
+											</li>
+										
+									
 										</ul>
 									</nav>
 								</div>
