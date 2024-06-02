@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 
 <!doctype html>
 <html lang="en">
@@ -81,17 +83,17 @@
 						<form action="">
 
 							<div class="row g-3">
-								<div class="col-6">
+								<div class="col-4">
 									<input type="text" class="form-control"
 										placeholder="Tìm Tên sản phẩm, mã sản phẩm"
 										aria-label="First name">
 								</div>
-								<div class="col-3">
+								<div class="col-4">
 									<input type="date" class="form-control"
 										
 										aria-label="First name">
 								</div>
-								<div class="col-3">
+								<div class="col-4">
 									<button type="button" class="btn btn-secondary mx-2">Tìm
 										kiếm</button>
 									<button type="button" class="btn btn-outline-primary  mx-2">Làm
@@ -112,59 +114,29 @@
 												<th scope="col">Mã Sản Phẩm</th>
 												<th scope="col">Tên Sản Phẩm</th>
 												<th scope="col">Giá </th>
-												<th scope="col">Kho Hàng</th>
+												<th scope="col">Giảm Giá</th>
 												<th scope="col">Thao Tác</th>
 											</tr>
 										</thead>
 										<tbody>
+										
+										<c:forEach var="product" items="${listProduct}">
 											<tr>
 												<td>
-												<img alt="" src="/img/cat-5.jpg" style="height: 100px ; width: 120px">
+												<img alt="" src="/imageProduct/${product.nameImage}" style="height: 100px ; width: 120px">
+												
 												</td>
-												<td >13423</td>
-												<td>Áo Phong Nam</td>
-												<td>999$</td>
-												<td>100</td>
+											
+												<td >${product.idProduct}</td>
+												<td>${product.name}</td>
+												<td>${product.price} VND</td>
+												<td>${product.disscount} %</td>
 												<td>
-												<button type="button" class="btn btn-outline-primary">Chỉnh sửa</button>
+												<button type="submit" formaction="/admin/product/edit/${product.idProduct}" class="btn btn-outline-primary">Chỉnh sửa</button>
 												</td>
 											</tr>
-											<tr>
-												<td>
-												<img alt="" src="/img/cat-3.jpg" style="height: 100px ; width: 120px">
-												</td>
-												<td >13423</td>
-												<td>Áo Phong Nam</td>
-												<td>999$</td>
-												<td>100</td>
-												<td>
-												<button type="button" class="btn btn-outline-primary">Chỉnh sửa</button>
-												</td>
-											</tr>
-											<tr>
-												<td>
-												<img alt="" src="/img/cat-2.jpg" style="height: 100px ; width: 120px">
-												</td>
-												<td >13423</td>
-												<td>Áo Phong Nam</td>
-												<td>999$</td>
-												<td>100</td>
-												<td>
-												<button type="button" class="btn btn-outline-primary">Chỉnh sửa</button>
-												</td>
-											</tr>
-											<tr>
-												<td>
-												<img alt="" src="/img/cat-1.jpg" style="height: 100px ; width: 120px">
-												</td>
-												<td >13423</td>
-												<td>Áo Phong Nam</td>
-												<td>999$</td>
-												<td>100</td>
-												<td>
-												<button type="button" class="btn btn-outline-primary">Chỉnh sửa</button>
-												</td>
-											</tr>
+											</c:forEach>
+											
 										</tbody>
 									</table>
 

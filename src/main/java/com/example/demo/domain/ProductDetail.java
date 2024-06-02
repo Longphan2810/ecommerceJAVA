@@ -9,27 +9,27 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-@Entity @Table(name = "ProductDetail")
+@Entity @Table(name = "ProductDetail",uniqueConstraints = @UniqueConstraint(columnNames = {"size","id_Product"}))
 public class ProductDetail {
 	
 	@Id @Column(name = "id_Product_Detail" )
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProductDetail;
-	private int size;
-	private int quanlity;
+	private String size;
+	private int quality;
 	
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_Product")
 	private Product product;
 	
-	@OneToMany(mappedBy = "productDetail")
-	private List<ImagesProduct> listImagesProduct;
+	
 }
