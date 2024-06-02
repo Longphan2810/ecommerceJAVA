@@ -4,9 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.support.PageableUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.DTO.ProductDTO;
 import com.example.demo.domain.Category;
@@ -48,7 +54,7 @@ public class ManageProductController {
 	public List<Category> getListCate() {
 
 		return categoryServiceImpl.findAll();
-	}
+		}
 
 	@ModelAttribute("listProduct")
 	public List<Product> getListProduct() {
@@ -65,9 +71,46 @@ public class ManageProductController {
 
 	}
 
-	@GetMapping("/admin/list-product")
-	public String getAdmindsSanPham() {
+	@RequestMapping("/admin/list-product")
+	public String getAdmindsSanPham(Model model,@RequestParam("p") Optional<Integer> p) {
 
+		String keywords = paramService.getString("keywords", "");
+		
+		System.out.println(keywords);
+		
+		if(!keywords.trim().equalsIgnoreCase("")) {
+			
+			return "forward:/admin/list-product/findByName";
+		}
+		
+		Pageable pageable = PageRequest.of(p.orElse(0), 10);
+		
+		Page<Product> page = productServiceImpl.findAll(pageable);
+		
+		System.out.println(page.getTotalElements());
+		
+		model.addAttribute("pageProduct", page);
+		model.addAttribute("keywords", keywords);
+		
+		return "adminViews/html/DanhSachSanPham";
+
+	}
+	
+	@GetMapping("/admin/list-product/findByName")
+	public String getAdmindsSanPhamFindByName(Model model,@RequestParam("p") Optional<Integer> p) {
+
+		Pageable pageable = PageRequest.of(p.orElse(0), 10);
+		
+		String keywords = paramService.getString("keywords", "");
+		
+		Page<Product> page = productServiceImpl.findAllByNameLike("%"+keywords+"%", pageable);
+		
+		System.out.println(page.getTotalElements());
+		
+		model.addAttribute("pageProduct", page);
+		model.addAttribute("keywords", keywords);
+		
+		
 		return "adminViews/html/DanhSachSanPham";
 
 	}
@@ -332,4 +375,5 @@ public class ManageProductController {
 		return "adminViews/html/QuanLySanPham";
 	}
 
+	
 }

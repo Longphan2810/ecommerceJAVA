@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 	
 	<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+	<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 
 <!doctype html>
 <html lang="en">
@@ -80,29 +81,27 @@
 					<div class="container m-3">
 						<h3>Danh Sách Sản Phẩm</h3>
 						<!-- form tim kiem -->
-						<form action="">
+						<form action="/admin/list-product">
 
 							<div class="row g-3">
-								<div class="col-4">
+								<div class="col-8">
 									<input type="text" class="form-control"
-										placeholder="Tìm Tên sản phẩm, mã sản phẩm"
+										name="keywords" value="${keywords}"
+										placeholder="Tìm Tên sản phẩm"
 										aria-label="First name">
 								</div>
+								
 								<div class="col-4">
-									<input type="date" class="form-control"
-										
-										aria-label="First name">
-								</div>
-								<div class="col-4">
-									<button type="button" class="btn btn-secondary mx-2">Tìm
+									<button type="submit" class="btn btn-secondary mx-2">Tìm
 										kiếm</button>
-									<button type="button" class="btn btn-outline-primary  mx-2">Làm
+									<button type="submit" formaction="/admin/list-product" formmethod="post" class="btn btn-outline-primary  mx-2">Làm
 										Mới</button>
 								</div>
 
 
-								<div class="col-12">
-									<h4>999 Sản Phẩm</h4>
+								<div class="col-12 d-flex justify-content-between">
+									<h4> Tổng : ${pageProduct.totalElements} Sản Phẩm</h4>
+									
 								</div>
 								<!-- table -->
 								<div class="col-11 mx-auto" style="overflow-y: scroll; height: 500px;">
@@ -120,7 +119,7 @@
 										</thead>
 										<tbody>
 										
-										<c:forEach var="product" items="${listProduct}">
+										<c:forEach var="product" items="${pageProduct.content}">
 											<tr>
 												<td>
 												<img alt="" src="/imageProduct/${product.nameImage}" style="height: 100px ; width: 120px">
@@ -147,13 +146,24 @@
 								<div class="d-flex justify-content-center">
 
 									<nav aria-label="Page navigation example mx-auto">
+										
+										
+										
 										<ul class="pagination">
-											<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#">Next</a></li>
+											
+											<li class="page-item">
+											<a class="page-link" ${pageProduct.number-1>=0?'':'onclick="return false;"'} href="/admin/list-product?p=${pageProduct.number-1}&&keywords=${keywords}">Previous</a>
+											</li>
+										
+											<c:forEach begin="1"  var="i" step="1" end="${pageProduct.totalPages}">
+											<li class="page-item"><a class="page-link" href="/admin/list-product?p=${i-1}&&keywords=${keywords}">${i}</a></li>	
+											</c:forEach>
+										
+											<li class="page-item">
+											<a class="page-link" ${pageProduct.number<pageProduct.totalPages-1?'':'onclick="return false;"'} href="/admin/list-product?p=${pageProduct.number+1}&&keywords=${keywords}">Next</a>
+											</li>
 										</ul>
+										
 									</nav>
 								</div>
 

@@ -77,6 +77,14 @@ public class ProductServiceImpl implements ProductServiceInterface {
 	public void delete(Product entity) {
 		productRepository.delete(entity);
 	}
+
+	public Page<Product> findAllByNameLike(String name, Pageable pageable) {
+		return productRepository.findAllByNameLike(name, pageable);
+	}
+
+	public Page<Product> findAll(Pageable pageable) {
+		return productRepository.findAll(pageable);
+	}
 	
 	
 	
