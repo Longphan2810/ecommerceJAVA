@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,16 +39,17 @@
 				</a>
 			</div>
 			<div class="col-lg-6 col-6 text-left">
-				<form action="">
+				<form action="/shop/filter" method="get">
 					<div class="input-group">
 						<input type="text" class="form-control"
+							name="keywords"
 							placeholder="Search for products">
 						<div class="input-group-append">
-							<a href="#" >
-							<span class="input-group-text bg-transparent text-primary h-100">
-								  <i class="fa fa-search"></i>
+							<button type="submit" class="btn border"  role="button"> <span
+								class=" bg-transparent text-primary h-100">
+									<i class="fa fa-search"></i>
 							</span>
-							</a>
+							</button>
 						</div>
 					</div>
 				</form>
@@ -76,15 +80,12 @@
 					<nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         
-                        <a href="" class="nav-item nav-link">Shirts</a>
-                        <a href="" class="nav-item nav-link">Jeans</a>
-                        <a href="" class="nav-item nav-link">Swimwear</a>
-                        <a href="" class="nav-item nav-link">Sleepwear</a>
-                        <a href="" class="nav-item nav-link">Sportswear</a>
-                        <a href="" class="nav-item nav-link">Jumpsuits</a>
-                        <a href="" class="nav-item nav-link">Blazers</a>
-                        <a href="" class="nav-item nav-link">Jackets</a>
-                        <a href="" class="nav-item nav-link">Shoes</a>
+                        <c:forEach var="cate" items="${listCate}">
+                         <a href="" class="nav-item nav-link">${cate.name}</a>
+                        </c:forEach>
+                        
+                       
+                        
                     </div>
                 </nav>
 					</div>
@@ -182,68 +183,7 @@
     </div>
     <!-- Featured End -->
     
-    
-      <!-- Categories Start -->
-    <div class="container-fluid pt-5">
-        <div class="row px-xl-5 pb-3">
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-1.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Men's dresses</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-2.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Women's dresses</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-3.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Baby's dresses</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-4.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Accerssories</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-5.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Bags</h5>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 pb-1">
-                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" src="img/cat-6.jpg" alt="">
-                    </a>
-                    <h5 class="font-weight-semi-bold m-0">Shoes</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Categories End -->
-    
+   
        <!-- Products Start -->
     <div class="container-fluid pt-5">
         <div class="text-center mb-4">
@@ -251,16 +191,19 @@
         </div>
         <div class="row px-xl-5 pb-3">
           
+          <c:forEach var="product" items="${listProduct}">
+          <jsp:include page="./component/product.jsp">
+          <jsp:param value="${product.idProduct}" name="id"/>
+          	<jsp:param value="${product.nameImage}" name="image"/>
+         	 <jsp:param value="${product.name}" name="name"/>	
+         	 <jsp:param value="${product.price}" name="price"/>
+          </jsp:include>
+          
+          </c:forEach>
+          
          
-           			<jsp:include page="./component/product.jsp"></jsp:include>
-					<jsp:include page="./component/product.jsp"></jsp:include>
-					<jsp:include page="./component/product.jsp"></jsp:include>
-					<jsp:include page="./component/product.jsp"></jsp:include>
-					<jsp:include page="./component/product.jsp"></jsp:include>
-					<jsp:include page="./component/product.jsp"></jsp:include>
-					<jsp:include page="./component/product.jsp"></jsp:include>
-					<jsp:include page="./component/product.jsp"></jsp:include>
-					<jsp:include page="./component/product.jsp"></jsp:include>
+           			
+					
           
            
          

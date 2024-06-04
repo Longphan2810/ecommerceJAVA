@@ -8,16 +8,17 @@
 				</a>
 			</div>
 			<div class="col-lg-6 col-6 text-left">
-				<form action="">
+				<form action="/shop/filter" method="get">
 					<div class="input-group">
 						<input type="text" class="form-control"
+							name="keywords"
 							placeholder="Search for products">
 						<div class="input-group-append">
-							<a href="#"> <span
-								class="input-group-text bg-transparent text-primary h-100">
+							<button type="submit" class="btn border"  role="button"> <span
+								class=" bg-transparent text-primary h-100">
 									<i class="fa fa-search"></i>
 							</span>
-							</a>
+							</button>
 						</div>
 					</div>
 				</form>
@@ -52,15 +53,9 @@
 							<div class="navbar-nav w-100 overflow-hidden"
 								style="height: 350px">
 
-								<a href="" class="nav-item nav-link">Shirts</a> <a href=""
-									class="nav-item nav-link">Jeans</a> <a href=""
-									class="nav-item nav-link">Swimwear</a> <a href=""
-									class="nav-item nav-link">Sleepwear</a> <a href=""
-									class="nav-item nav-link">Sportswear</a> <a href=""
-									class="nav-item nav-link">Jumpsuits</a> <a href=""
-									class="nav-item nav-link">Blazers</a> <a href=""
-									class="nav-item nav-link">Jackets</a> <a href=""
-									class="nav-item nav-link">Shoes</a>
+								<c:forEach var="cate" items="${listCate}">
+                      			   <a href="/shop/${cate.name}" class="nav-item nav-link">${cate.name}</a>
+                      			</c:forEach>
 							</div>
 						</nav>
 					</div>
@@ -98,13 +93,7 @@
 						style="min-height: 370px">
 						<h1 class="font-weight-semi-bold text-uppercase mb-3">Our
 							Shop</h1>
-						<div class="d-inline-flex">
-							<p class="m-0">
-								<a href="">Home</a>
-							</p>
-							<p class="m-0 px-2">-</p>
-							<p class="m-0">Shop</p>
-						</div>
+						
 					</div>
 				</div>
 				<!-- Page Header End -->

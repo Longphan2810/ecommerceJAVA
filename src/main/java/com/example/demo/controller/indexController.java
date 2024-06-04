@@ -6,12 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class indexController {
 
-	@GetMapping("/")
-	public String getIndex() {
-
-		return "index";
-
-	}
+	
 	
 	@GetMapping("/admin")
 	public String getAdmin() {
@@ -53,18 +48,7 @@ public class indexController {
 		return "chiTietDonCostumer";
 
 	}
-	@GetMapping("/shop")
-	public String getshop() {
 
-		return "shop";
-
-	}
-	@GetMapping("/shop2")
-	public String getshop2() {
-
-		return "shop2";
-
-	}
 	@GetMapping("/costumer")
 	public String getCostumer() {
 
@@ -114,12 +98,6 @@ public class indexController {
 
 	}
 	
-	@GetMapping("/detail")
-	public String getDetail() {
-
-		return "detail";
-
-	}
 	@GetMapping("/shopCart")
 	public String getShopCart() {
 

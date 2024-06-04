@@ -132,7 +132,7 @@
 												<td>${user.birhday}</td>
 												<td>${user.status}</td>
 												<td>
-												<a type="button" href="/admin/user/edit/${user.idUser}" class="btn btn-outline-primary"> sửa</a>
+												<button type="submit" formmethod="post" formaction="/admin/user/edit/${user.idUser}" class="btn btn-outline-primary"> sửa</button>
 												</td>
 											</tr>
 											

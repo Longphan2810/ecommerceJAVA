@@ -24,5 +24,12 @@ public class Category {
 	
 	@OneToMany(mappedBy = "category")
 	private List<Product> listProduct;
+
+	@Override
+	public String toString() {
+		return  name ;
+	}
+
+	
 	
 }

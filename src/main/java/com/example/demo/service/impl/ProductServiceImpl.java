@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.domain.Category;
 import com.example.demo.domain.Product;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.service.ProductServiceInterface;
@@ -84,6 +85,24 @@ public class ProductServiceImpl implements ProductServiceInterface {
 
 	public Page<Product> findAll(Pageable pageable) {
 		return productRepository.findAll(pageable);
+	}
+
+	public Page<Product> findAllByCategory(Category category, Pageable pageable) {
+		return productRepository.findAllByCategory(category, pageable);
+	}
+
+	public Page<Product> findAllByPriceBetween(float minPrice, float maxPrice, Pageable pageable) {
+		return productRepository.findAllByPriceBetween(minPrice, maxPrice, pageable);
+	}
+
+	public Page<Product> findAllByCategoryAndPriceBetween(Category category, float minPrice, float maxPrice,
+			Pageable pageable) {
+		return productRepository.findAllByCategoryAndPriceBetween(category, minPrice, maxPrice, pageable);
+	}
+
+	public Page<Product> findAllByPriceBetweenAndNameLike(float minPrice, float maxPrice, String name,
+			Pageable pageable) {
+		return productRepository.findAllByPriceBetweenAndNameLike(minPrice, maxPrice, name, pageable);
 	}
 	
 	

@@ -89,6 +89,10 @@ public class CategoryServiceImpl implements CategoryServiceInterface{
 	public List<Category> findAllByNameLike(String name) {
 		return categoryRepository.findAllByNameLike(name);
 	}
+
+	public Category findByNameLike(String name) {
+		return categoryRepository.findByNameLike(name);
+	}
 	
 	
 }

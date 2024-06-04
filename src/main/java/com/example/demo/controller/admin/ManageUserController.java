@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -74,18 +73,43 @@ public class ManageUserController {
 	
 	
 	
-	@GetMapping("/admin/user")
+	@RequestMapping("/admin/user")
 	public String getAdminnguoidung() {
 
 		return "adminViews/html/QuanLyNguoiDung";
 
 	}
 	
-	@GetMapping("/admin/user/edit/{id}")
+	@PostMapping("/admin/user/edit/{id}")
 	public String editUser(@PathVariable("id") int idUser,Model model) {
 		Users userDB = userServiceImpl.getById(idUser);
 		
 		model.addAttribute("userDB", userDB);
+		return "adminViews/html/QuanLyNguoiDung";
+	}
+	
+	@PostMapping("/admin/user/update")
+	public String updateUser(Model model) {
+		
+		int idUser = paramService.getInt("IdUserDB", -1);
+		String statusUser = paramService.getString("statusUser", "");
+		boolean roleUser = paramService.getBoolean("role", false);
+		
+		if(!userServiceImpl.existsById(idUser)) {
+			model.addAttribute("message", "Vui lòng chọn user cần sửa bên danh sách user !");
+			return "adminViews/html/QuanLyNguoiDung";
+			
+		} 
+		
+		Users userUpdate = userServiceImpl.getById(idUser);
+		userUpdate.setStatus(statusUser);
+		userUpdate.setRole(roleUser);
+		
+		userServiceImpl.save(userUpdate);
+		
+		model.addAttribute("message", "Đã lưu thông tin !");
+		model.addAttribute("userDB", userUpdate);
+		
 		return "adminViews/html/QuanLyNguoiDung";
 	}
 	

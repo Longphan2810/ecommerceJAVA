@@ -11,4 +11,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>{
 
 	public  List<Category> findAllByNameLike(String name);
 	
+	public Category findByNameLike(String name);
+	
+	
 }

@@ -82,12 +82,12 @@
 
 						<form action="">
 							<div class="row">
-
+								<input type="hidden" name="IdUserDB" value="${userDB.idUser}" >
 							
 								<!-- Right -->
 								<div class="col-11">
 
-									<div class="mb-3">
+									<div class="mb-3" ${userDB.name}>
 										<label for="exampleFormControlInput1" class="form-label">
 											Tên Người Dùng</label> <input type="text" value="${userDB.name}" class="form-control"
 											id="exampleFormControlInput1" readonly="readonly" placeholder="Tên người dùng">
@@ -119,11 +119,11 @@
 
 									<div class="mb-3 mt-3">
 										<label for="exampleFormControlInput1" class="form-label">
-											Trạng Thái</label> <select class="form-select"
+											Trạng Thái</label> <select name="statusUser" class="form-select"
 											aria-label="Default select example">
-											<option selected>Active</option>
-											<option value="1">Ban</option>
-											<option value="3">Waiting</option>
+											<option value="Active" ${userDB.status=='Active'?'selected':'' }>Active</option>
+											<option  value="Ban"   ${userDB.status=='Ban'?'selected':'' }>Ban</option>
+											<option value="Waiting"${userDB.status=='Waiting'?'selected':'' }>Waiting</option>
 										</select>
 
 									</div>
@@ -132,12 +132,12 @@
 											Quyền Hạn</label>
 										<div class="form-check mx-3 form-check-inline">
 											<input class="form-check-input" type="radio"
-												name="role" id="inlineRadio1" ${userDB.role==true?'checked':'' } value="${userDB.role}">
+												name="role" id="inlineRadio1"  ${userDB.role==true?'checked':'' } value="true">
 											<label class="form-check-label" for="inlineRadio1">Admin</label>
 										</div>
 										<div class="form-check mx-3 form-check-inline">
 											<input class="form-check-input" type="radio"
-												name="role" id="inlineRadio2" ${userDB.role==false?'checked':'' } value="${userDB.role}" >
+												name="role" id="inlineRadio2"  ${userDB.role==false?'checked':'' } value="false" >
 											<label class="form-check-label" for="inlineRadio2">User</label>
 										</div>
 
@@ -151,9 +151,9 @@
 							
 
 						<div class="col-11 text-center">
-						<button type="button" class="btn btn-outline-primary mx-2">Thêm</button>
-						<button type="button" class="btn btn-outline-primary mx-2">Cập Nhật</button>
-						<button type="button" class="btn btn-outline-primary mx-2">Làm Mới</button>
+					
+						<button type="submit" formaction="/admin/user/update" formmethod="post" class="btn btn-outline-primary mx-2">Cập Nhật</button>
+						<button type="submit" formaction="/admin/user" formmethod="post" class="btn btn-outline-primary mx-2">Làm Mới</button>
 						
 						</div>
 
@@ -174,6 +174,23 @@
 			</div>
 		</div>
 	</div>
+	
+	<!--  thong bao -->
+
+	<div class="toast-container  position-fixed bottom-0 end-0 p-3">
+		<div id="liveToast" class="toast ${message!=null?'show':''}"
+			role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<strong class="me-auto">Thông báo</strong>
+
+				<button type="button" class="btn-close" data-bs-dismiss="toast"
+					aria-label="Close"></button>
+			</div>
+			<div class="toast-body">${message}</div>
+		</div>
+	</div>
+	
+	
 	<script src="/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/assets/js/sidebarmenu.js"></script>
