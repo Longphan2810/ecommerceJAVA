@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.domain.Category;
 import com.example.demo.domain.Product;
-import com.example.demo.service.SessionService;
 import com.example.demo.service.impl.CategoryServiceImpl;
 import com.example.demo.service.impl.ProductServiceImpl;
+import com.example.demo.service.impl.SessionService;
 
 @Controller
 public class shopController {

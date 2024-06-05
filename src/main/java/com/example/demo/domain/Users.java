@@ -9,12 +9,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-@Entity @Table(name = "Users")
+@Entity @Table(name = "Users", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 public class Users {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUser;
@@ -22,13 +23,26 @@ public class Users {
 	private String email;
 	private Date birhday;
 	private String phone;
-	private String status;
+	
 	private String passport;
 	private String name;
 	private boolean role;
 	
+	private String token;
+	private Long timeToken;
+	
+	private String status;
+	
 	@OneToMany(mappedBy = "user")
 	private List<DeliveryAddress> listDeliveryAddresses;
+
+	@Override
+	public String toString() {
+		return "Users [ email=" + email + ", name=" + name + ", role=" + role + "]";
+	}
+	
+	
+	 
 	
 //	@OneToMany(mappedBy = "user")
 //	private List<Order> listOrder;

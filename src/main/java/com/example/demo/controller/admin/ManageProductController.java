@@ -24,8 +24,8 @@ import com.example.demo.DTO.ProductDTO;
 import com.example.demo.domain.Category;
 import com.example.demo.domain.Product;
 import com.example.demo.domain.ProductDetail;
-import com.example.demo.service.ParamService;
 import com.example.demo.service.impl.CategoryServiceImpl;
+import com.example.demo.service.impl.ParamService;
 import com.example.demo.service.impl.ProductDetailServiceImpl;
 import com.example.demo.service.impl.ProductServiceImpl;
 

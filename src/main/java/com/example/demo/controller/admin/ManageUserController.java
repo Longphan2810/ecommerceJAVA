@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.domain.Users;
-import com.example.demo.service.ParamService;
+import com.example.demo.service.impl.ParamService;
 import com.example.demo.service.impl.UserServiceImpl;
 
 @Controller

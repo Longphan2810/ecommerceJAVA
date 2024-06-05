@@ -36,7 +36,7 @@ public class indexController {
 
 	}
 	
-	@GetMapping("/checkout/test1/test2/test3")
+	@GetMapping("/checkout")
 	public String getCheckout() {
 
 		return "checkout";

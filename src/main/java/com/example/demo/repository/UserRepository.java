@@ -13,4 +13,10 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 	
 	public Page<Users> findAllByNameLikeAndEmailLike(String name,String email,Pageable pageable);
 
+	public Users findByEmail(String email);
+	
+	public Users findByToken(String token);
+	
+	
+	
 }

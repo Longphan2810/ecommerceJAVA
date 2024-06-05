@@ -90,6 +90,14 @@ public class UserServiceImpl implements UserServiceInterface {
 	public Page<Users> findAllByNameLikeAndEmailLike(String name, String email, Pageable pageable) {
 		return userRepository.findAllByNameLikeAndEmailLike(name, email, pageable);
 	}
+
+	public Users findByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+
+	public Users findByToken(String token) {
+		return userRepository.findByToken(token);
+	}
 	
 	
 	

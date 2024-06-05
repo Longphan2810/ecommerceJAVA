@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -330,7 +331,7 @@ button{
 
 </head>
 <body>
-<div class="cont">
+<div class="cont ${signup}">
 	<div class="position-fixed z-3 p-4">
 	 <a class="me-5" style="text-decoration: none; color: black"  href="/"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
@@ -372,33 +373,51 @@ button{
         
       </div>
       
-      <form action="">
+      <form action="/register" method="post">
       
       <div class="form sign-up">
         <h2>Sign Up</h2>
         <label>
           <span>Name</span>
-          <input type="text">
+          <input type="text" required="required" value="${userDTO.name}" name="name">
         </label>
         <label>
           <span>Email</span>
-          <input type="email">
+          <input type="email" required="required" value="${userDTO.email}" name="email">
         </label>
         <label>
           <span>Password</span>
-          <input type="password">
+          <input type="password" required="required" minlength="8" name="password">
         </label>
         <label>
           <span>Confirm Password</span>
-          <input type="password">
+          <input type="password" required="required"   name="ConfirmPassword">
+          
         </label>
-        <button type="button" class="submit">Sign Up Now</button>
+        <button type="submit" class="submit">Sign Up Now</button>
    
         
       </div>
       </form>
     </div>
   </div>
+
+
+<!--  thong bao -->
+
+	<div class="toast-container  position-fixed bottom-0 end-0 p-3">
+		<div id="liveToast" class="toast ${message!=null?'show':''}"
+			role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<strong class="me-auto">Thông báo</strong>
+
+				<button type="button" class="btn-close" data-bs-dismiss="toast"
+					aria-label="Close"></button>
+			</div>
+			<div class="toast-body">${message}</div>
+		</div>
+	</div>
+	
 
 
 <script type="text/javascript">
