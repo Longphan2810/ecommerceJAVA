@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +24,7 @@ public class OrderDetail {
 	@JoinColumn(name = "id_order")
 	private Orders order;
 	@ManyToOne()
-	@JoinColumn(name = "id_product")
-	private Product product;
+	@JoinColumn(name = "id_productDetail")
+	private ProductDetail productDetail;
 	
 }

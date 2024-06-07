@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
+	<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,7 +122,10 @@
 										</form>
 									</div>
 								</td>
-								<td class="align-middle">${item.value*item.key.price}</td>
+								
+								<td>
+								 <fmt:formatNumber value="${item.value*item.key.price}" type="currency" ></fmt:formatNumber> 
+								 </td>
 								<c:set var="totalPrice"
 									value="${totalPrice+item.value*item.key.price}"></c:set>
 
@@ -154,7 +158,7 @@
 
 
 
-					<form action="">
+					<form action="/create-order" method="post">
 				<!-- tong tien -->
 				<div class="card border-secondary mb-5">
 					<div class="card-header  border-0">
@@ -163,7 +167,9 @@
 					<div class="card-body">
 						<div class="d-flex justify-content-between mb-3 pt-1">
 							<h6 class="font-weight-medium">Subtotal</h6>
-							<h6 class="font-weight-medium">${totalPrice}VND</h6>
+							<h6 class="font-weight-medium">
+							      <fmt:formatNumber value="${totalPrice}" type="currency" ></fmt:formatNumber> VND
+							</h6>
 						</div>
 						<div class="d-flex justify-content-between">
 							<h6 class="font-weight-medium">Shipping</h6>
@@ -177,13 +183,13 @@
 
 						<div class="form-check">
 							<input class="form-check-input" type="radio"
-								name="phuongthucTT" id="flexRadioDefault1"> <label
+								name="paymentMethods" value="cash" checked id="flexRadioDefault1"> <label
 								class="form-check-label" for="flexRadioDefault1">
 								Thanh toán bằng tiền mặt </label>
 						</div>
 						<div class="form-check">
 							<input class="form-check-input" type="radio"
-								name="phuongthucTT" id="flexRadioDefault2" checked>
+								name="paymentMethods" value="VNpay" id="flexRadioDefault2" >
 							<label class="form-check-label" for="flexRadioDefault2">
 								Thanh toán bằng VNpay (Coming soon) </label>
 						</div>
@@ -192,7 +198,10 @@
 					<div class="card-footer border-secondary bg-transparent">
 						<div class="d-flex justify-content-between mt-2">
 							<h5 class="font-weight-bold">Total</h5>
-							<h5 class="font-weight-bold">${totalPrice}VND</h5>
+							<h5 class="font-weight-bold">
+							<fmt:formatNumber value="${totalPrice}" type="currency" ></fmt:formatNumber> VND
+							
+							</h5>
 						</div>
 						<div class="d-flex justify-content-between mt-2">
 							<h5 class="font-weight-bold"></h5>
@@ -258,6 +267,23 @@
 			</div>
 		</div>
 	</form>
+
+
+<!--  thong bao -->
+
+	<div class="toast-container  position-fixed bottom-0 end-0 p-3">
+		<div id="liveToast" class="toast ${message!=null?'show':''}"
+			role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<strong class="me-auto">Thông báo</strong>
+
+				<button type="button" class="btn-close" data-bs-dismiss="toast"
+					aria-label="Close"></button>
+			</div>
+			<div class="toast-body">${message}</div>
+		</div>
+	</div>
+	
 
 
 

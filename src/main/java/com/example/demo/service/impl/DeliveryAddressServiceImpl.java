@@ -83,6 +83,10 @@ public class DeliveryAddressServiceImpl implements DeliveryAddessServiceInterfac
 	public DeliveryAddress findById(int id) {
 		return deliveryRepository.findById(id);
 	}
+
+	public DeliveryAddress findByUserAndStatus(Users user, boolean status) {
+		return deliveryRepository.findByUserAndStatus(user, status);
+	}
 	
 	
 	

@@ -24,6 +24,12 @@ public class Orders {
 	private int idOrder;
 	private String  status;
 	private float amount;
+	private  String paymentMethod;
+	
+	private String name;
+	private String address;
+	private String city;
+	
 	@Temporal(TemporalType.DATE)
 	private Date orderDate = new Date();
 

@@ -14,4 +14,8 @@ public interface DeliveryRepository extends JpaRepository<DeliveryAddress, Integ
 	public List<DeliveryAddress> findAllByUser(Users user);
 	
 	public DeliveryAddress findById(int id);
+	
+	public DeliveryAddress findByUserAndStatus(Users user,boolean status);
+	
+	
 }

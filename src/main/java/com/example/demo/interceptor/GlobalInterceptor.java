@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.domain.Category;
 import com.example.demo.service.impl.CategoryServiceImpl;
+import com.example.demo.service.impl.ShopCartService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,6 +19,8 @@ public class GlobalInterceptor implements HandlerInterceptor {
 
 	@Autowired
 	CategoryServiceImpl categoryServiceImpl;
+	@Autowired
+	ShopCartService shopCartService;
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -25,6 +28,8 @@ public class GlobalInterceptor implements HandlerInterceptor {
 		// TODO Auto-generated method stub
 		
 		List<Category> listCate = categoryServiceImpl.findAll();
+		
+		request.getSession().setAttribute("sizeCart", shopCartService.size());
 		
 		request.setAttribute("listCate", listCate);
 		

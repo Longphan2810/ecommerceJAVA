@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="jakarta.tags.core" prefix="c"%>
+	<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,9 @@
                     	
                        <tr>
                        
-                            <td class="align-middle"><img src="/imageProduct/${item.key.nameImage}" alt="" style="width: 50px;">${item.key.name} ( Size : ${item.key.size} )</td>
+                            <td class="align-middle"><img src="/imageProduct/${item.key.nameImage}" alt="" style="width: 50px;">
+                            ${item.key.name}  Size ${item.key.size} <br> ( còn : ${item.key.quality} SP)                     	
+                            </td>
                             <td class="align-middle">${item.key.price} VND</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -65,7 +68,10 @@
                                    </form>
                                 </div>
                             </td>
-                            <td class="align-middle">${item.value*item.key.price}</td>
+                            <td class="align-middle">
+                            
+                             <fmt:formatNumber value="${item.value*item.key.price}" type="currency" ></fmt:formatNumber> 
+                            </td>
                             <c:set var="totalPrice" value="${totalPrice+item.value*item.key.price}" ></c:set>
                            
                             <td class="align-middle">
@@ -98,7 +104,10 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">${totalPrice}</h6>
+                            <h6 class="font-weight-medium">
+                            <fmt:formatNumber value="${totalPrice}" type="currency" ></fmt:formatNumber> 
+                            
+                            </h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
@@ -126,6 +135,22 @@
 	
 
 
+
+<!--  thong bao -->
+
+	<div class="toast-container  position-fixed bottom-0 end-0 p-3">
+		<div id="liveToast" class="toast ${message!=null?'show':''}"
+			role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<strong class="me-auto">Thông báo</strong>
+
+				<button type="button" class="btn-close" data-bs-dismiss="toast"
+					aria-label="Close"></button>
+			</div>
+			<div class="toast-body">${message}</div>
+		</div>
+	</div>
+	
 
 
 	<!-- Footer Start -->

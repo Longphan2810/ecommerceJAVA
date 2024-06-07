@@ -45,8 +45,8 @@ public class Users {
 	}
 	
 	
-	 
+	@OneToMany(mappedBy = "user")
+	private List<Orders> listOrder;
 	
-//	@OneToMany(mappedBy = "user")
-//	private List<Order> listOrder;
+	
 }
