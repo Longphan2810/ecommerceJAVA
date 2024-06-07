@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,74 +28,7 @@
 <body>
 
 
-<!-- Topbar Start -->
-	<div class="container-fluid" >
-
-		<div class="row align-items-center py-3 px-xl-5">
-			<div class="col-lg-3 d-none d-lg-block">
-				<a href="/" class="text-decoration-none">
-					<h1 class="m-0 display-5 font-weight-semi-bold">Neko Shop</h1>
-				</a>
-			</div>
-			<div class="col-lg-6 col-6 text-left">
-				<form action="">
-					<div class="input-group">
-						<input type="text" class="form-control"
-							placeholder="Search for products">
-						<div class="input-group-append">
-							<a href="#"> <span
-								class="input-group-text bg-transparent text-primary h-100">
-									<i class="fa fa-search"></i>
-							</span>
-							</a>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="col-lg-3 col-6 text-right">
-				<!-- shopping cart -->
-				 <a href="/shopCart" class="btn border"> <i
-					class="fas fa-shopping-cart text-primary"></i> <span class="badge">0</span>
-				</a>
-			</div>
-		</div>
-	</div>
-	<!-- Topbar End -->
-
-	<!-- Navbar Start -->
-	<div class="container-fluid ">
-		<div class="row border-top px-xl-5">
-			
-			<div class="col-lg-12">
-				<nav
-					class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0"
-					style="background-color: white;">
-					<a href="" class="text-decoration-none d-block d-lg-none">
-						<h1 class="m-0 display-5 font-weight-semi-bold">neko shop</h1>
-					</a>
-							 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-					<div class="collapse navbar-collapse justify-content-between p-3" style="background: white"
-						id="navbarSupportedContent">
-						<div class="navbar-nav mr-auto py-0">
-							<a href="/" class="nav-item nav-link active">Home</a> <a
-								href="/shop" class="nav-item nav-link">Shop</a> 
-							
-							
-						</div>
-						<div class="navbar-nav ml-auto py-0">
-							<a href="/login" class="nav-item nav-link">Login</a> <a href="/login"
-								class="nav-item nav-link">Register</a>
-						</div>
-					</div>
-				</nav>
-			
-
-			</div>
-		</div>
-	</div>
-	<!-- Navbar End -->
+	<%@ include file="./component/navbarInfo.jsp"%>
 
 
 
@@ -123,7 +58,7 @@
    <a href="/orderCostumer" class="list-group-item list-group-item-action">
    <i class="fa-solid fa-file-invoice me-3"></i> Quản lý đơn hàng</a>
   
-  <a href="/locationCostumer" class="list-group-item list-group-item-action active">
+  <a href="/locationCostumer/list" class="list-group-item list-group-item-action active">
    <i class="fa-solid fa-location-dot me-3"></i> Sổ địa chỉ</a>
   <a  class="list-group-item list-group-item-action">Coming soon . . .</a>
 </div>
@@ -150,7 +85,7 @@
 			<div class=" col-12 d-flex justify-content-center " >
 		
 			<span>
-			<a href="/locationCreateCostumer">+ Thêm địa chỉ mới </a>
+			<a href="/locationCostumer/add-form">+ Thêm địa chỉ mới </a>
 			</span>
 			
 			</div>
@@ -160,35 +95,39 @@
 		
 		<!-- đơn hàng  end -->
 		
-		
+		<c:forEach var="element"  items="${listDeliveryAddress}">
 		<!-- Địa chỉ -->
 		
 		<div class=" my-4 border shadow-sm " >
 		<!-- sơ lượt sản phẩm -->
 		<div class="   py-3  border-bottom d-flex flex-nonwrap">
-		
 			<!-- thong tin sản phẩm -->
 			<div class=" col-9 d-flex justify-content-between " >
 			
 			<div class="ms-3">
-			Nguyen van A <span class="text-success ms-2"> <i class="fa-regular fa-circle-check"></i> Địa chỉ mặc định </span> <br>
-			Địa chỉ : Số nhà 6 Đường ABC <br>
-			Số Điện thoại : 0987900876
+		${element.name}	
+		<c:if test="${element.status}">
+		 <span class="text-success ms-2"> <i class="fa-regular fa-circle-check"></i> Địa chỉ mặc định </span> 
+		 </c:if>
+		 <br>
+			Địa chỉ : ${element.address} , ${element.city} <br>
+			Số Điện thoại : ${element.phone}
 			
 			</div>
 			
 			<span>
-			<a href="#"> Chỉnh  Sửa</a>
+			<a href="/locationCostumer/update-form/${element.idDeliveryAddress}"> Chỉnh  Sửa</a>
 			</span>
 			
 			</div>
+			
 		</div>
 		
 		</div>
 		
-		<!-- đơn hàng  end -->
+		<!-- địa chỉ end -->
 		
-		
+		</c:forEach>
 		
 		
 		

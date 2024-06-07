@@ -4,6 +4,7 @@ package com.example.demo.domain;
 
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,11 +22,14 @@ import lombok.NoArgsConstructor;
 public class DeliveryAddress {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDeliveryAddress;
-	
+	@Column(columnDefinition = "nvarchar(100)")
 	private String city;
+	@Column(columnDefinition = "nvarchar(100)")
 	private String address;
-	private String status;
-	private int phone;
+	private Boolean status;
+	
+	private String phone;
+	@Column(columnDefinition = "nvarchar(100)")
 	private String name;
 	
 	@ManyToOne()

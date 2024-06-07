@@ -72,8 +72,8 @@
 		<div class="col-9 shadow-lg  row  pb-3">
 			<div>
 				<div class="my-3  ">
-					<span style="font-size: x-large; font-style: inherit;">Thêm
-						địa chỉ mới</span>
+					<span style="font-size: x-large; font-style: inherit;">Sửa
+						địa chỉ </span>
 				</div>
 
 
@@ -89,16 +89,17 @@
 					<div class="   py-3  border-bottom d-flex flex-nonwrap">
 
 
-						<form action="/locationCostumer/add-Address" method="post"
+						<form action="/locationCostumer/update-Address" method="post"
 							class="row g-3 m-3">
+							<input  type="hidden" name="idDeliveryAddress" value="${deliveryAddress.idDeliveryAddress}">
 							<div class="col-md-6">
 								<label for="inputEmail4" class="form-label">Họ và tên</label> <input
-									type="text" required="required" name="name"
+									type="text" required="required" name="name" value="${deliveryAddress.name}"
 									class="form-control" id="inputEmail4">
 							</div>
 							<div class="col-md-6">
 								<label for="inputPassword4" class="form-label">Số điện
-									thoại</label> <input type="text" required="required" minlength="10" name="phone"
+									thoại</label> <input type="text" required="required" minlength="10" name="phone" value="${deliveryAddress.phone}"
 									class="form-control" id="inputPassword4">
 
 								<%--alert  --%>
@@ -117,7 +118,7 @@
 							</div>
 							<div class="col-12">
 								<label for="inputAddress" class="form-label">Tỉnh/Thành
-									phố</label> <input type="text" required="required" name="city"
+									phố</label> <input type="text" required="required" value="${deliveryAddress.city}" name="city"
 									class="form-control" id="inputAddress"
 									placeholder="1234 Main St">
 							</div>
@@ -125,13 +126,13 @@
 
 							<div class="col-md-12">
 								<label for="inputCity" class="form-label">Địa chỉ</label> <input
-									type="text" required="required" class="form-control"
+									type="text" value="${deliveryAddress.address}" required="required" class="form-control"
 									name="address" id="inputCity">
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-check">
-									<input class="form-check-input" name="status" type="checkbox"
+									<input class="form-check-input"  ${deliveryAddress.status?'checked':''} name="status" type="checkbox"
 										value="true" id="flexCheckDefault"> <label
 										class="form-check-label" for="flexCheckDefault"> Địa
 										chỉ mặc định </label>

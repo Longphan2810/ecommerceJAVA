@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.demo.domain.DeliveryAddress;
+
 @Controller
 public class indexController {
 
@@ -36,12 +38,7 @@ public class indexController {
 
 	}
 	
-	@GetMapping("/checkout")
-	public String getCheckout() {
-
-		return "checkout";
-
-	}
+	
 	@GetMapping("/chitietdon/test1/test2/test3")
 	public String getchitietdon() {
 
@@ -55,12 +52,7 @@ public class indexController {
 		return "costumer";
 
 	}
-	@GetMapping("/infoCostumer")
-	public String getInFoCostumer() {
-
-		return "infoCostumer";
-
-	}
+	
 	@GetMapping("/orderCostumer")
 	public String getorderCostumer() {
 
@@ -68,41 +60,22 @@ public class indexController {
 
 	}
 	
-	@GetMapping("/locationCostumer")
-	public String getlocationCostumer() {
-
-		return "locationCostumer";
-
-	}
 	
-	@GetMapping("/locationCreateCostumer")
-	public String getlocationCreateCostumer() {
 
-		return "locationCreateCostumer";
-
-	}
 	
 	
 	
 	@GetMapping("/changePassCostumer")
 	public String getchangePassCostumer() {
 
+		
+		
 		return "changePassCostumer";
 
 	}
 	
-	@GetMapping("/login")
-	public String getlogin() {
-
-		return "loginAndSignup";
-
-	}
 	
-	@GetMapping("/shopCart")
-	public String getShopCart() {
-
-		return "shopingCart";
-
-	}
+	
+	
 
 }

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.domain.Product;
 import com.example.demo.domain.ProductDetail;
 import com.example.demo.repository.ProductDetailRepository;
 import com.example.demo.service.ProductDetailServiceInterface;
@@ -81,6 +82,14 @@ public class ProductDetailServiceImpl implements ProductDetailServiceInterface {
 
 	public void DeleteAllByIdProduct(int idProduct) {
 		productDetailRepository.DeleteAllByIdProduct(idProduct);
+	}
+
+	public ProductDetail findByProductAndSize(Product product, String size) {
+		return productDetailRepository.findByProductAndSize(product, size);
+	}
+
+	public ProductDetail findById(int id) {
+		return productDetailRepository.findById(id);
 	}
 	
 	

@@ -28,6 +28,8 @@
 	<%@ include file="./component/navbar.jsp"%>
 
 	<hr>
+	
+	<form action="/addToCard" method="post" >
 	<!-- Shop Detail Start -->
 	<div class="container-fluid py-5">
 		<div class="row px-xl-5">
@@ -57,42 +59,35 @@
 					diam sea et justo, amet at lorem et eirmod ipsum diam et rebum kasd
 					rebum.</p>
 				<div class="d-flex mb-3 flex-nowrap">
-					<p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
-					<form>
+					<p class="text-dark font-weight-medium mb-0 mr-3 p-2">Size</p>
 
-
-						<span class="ms-3"> <input type="radio"
-							class="custom-control-input" id="size-2" name="size"> <label
-							class="custom-control-label" for="size-2">S</label>
-						</span> <span class="ms-3"> <input type="radio"
-							class="custom-control-input" id="size-1" name="size"> <label
-							class="custom-control-label" for="size-1">M</label>
-						</span> <span class="ms-3"> <input type="radio"
-							class="custom-control-input" id="size-2" name="size"> <label
-							class="custom-control-label" for="size-2">L</label>
-						</span> <span class="ms-3"> <input type="radio"
-							class="custom-control-input" id="size-2" name="size"> <label
-							class="custom-control-label" for="size-2">XL</label>
+						<span class="ms-1 border p-2 d-flex  flex-nowrap"> <input type="radio"
+							class="custom-control-input" id="size-1"  required="required" name="size" value="S"> <label
+							class="custom-control-label fs-6" for="size-1"> Size S <br> (Còn:999SP)</label>
+						</span> 
+						<span class="ms-3 border p-2" > <input type="radio"
+							class="custom-control-input" id="size-2" required="required" name="size" value="M"> <label
+							class="custom-control-label" for="size-2">Size M <br> (Còn:999SP)</label>
+						</span> <span class="ms-3 border p-2"> <input type="radio"
+							class="custom-control-input" id="size-3" required="required" name="size" value="L"> <label
+							class="custom-control-label" for="size-3">Size L<br> (Còn:999SP)</label>
+						</span> <span class="ms-3 border p-2"> <input type="radio"
+							class="custom-control-input" id="size-4"  required="required"name="size" value="XL"> <label
+							class="custom-control-label" for="size-4">Size XL <br> (Còn:999SP)</label>
 						</span>
-					</form>
+					
 				</div>
 
 				<div class="d-flex align-items-center mb-4 pt-2">
+					<label class="me-4">Số lượng mua</label>
 					<div class="input-group quantity mr-3 border me-3"
 						style="width: 130px;">
-						<div class="input-group-btn">
-							<button class="btn  btn-minus">
-								<i class="fa fa-minus"></i>
-							</button>
-						</div>
-						<input type="text" class="form-control  text-center" value="1">
-						<div class="input-group-btn">
-							<button class="btn  btn-plus">
-								<i class="fa fa-plus"></i>
-							</button>
-						</div>
+					  	
+						<input type="number" min=0  required="required" class="form-control  text-center" name="quality">
+						
 					</div>
-					<button class="btn btn-primary px-3">
+					<input type="hidden" name="idProduct" value="${productDB.idProduct}">
+					<button class="btn btn-primary px-3" type="submit">
 						<i class="fa fa-shopping-cart mr-1"></i> Add To Cart
 					</button>
 				</div>
@@ -103,13 +98,16 @@
 
 	</div>
 	<!-- Shop Detail End -->
+	</form>
+	
 	<hr>
 	<!-- Shop Product Start -->
 	<div class="w-100 text-center">
 		<h2>-You May Also Like-</h2>
 
 	</div>
-
+	
+ <div class="container">
 	<div class="w-100 container-fluid  row">
 
 		
@@ -123,7 +121,7 @@
 
 		</c:forEach>
 	</div>
-
+</div>
 
 
 
@@ -133,7 +131,20 @@
 
 	<!-- Shop Product End -->
 
+<!--  thong bao -->
 
+	<div class="toast-container  position-fixed bottom-0 end-0 p-3">
+		<div id="liveToast" class="toast ${param.message!=null?'show':''}"
+			role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<strong class="me-auto">Thông báo</strong>
+
+				<button type="button" class="btn-close" data-bs-dismiss="toast"
+					aria-label="Close"></button>
+			</div>
+			<div class="toast-body">${param.message}</div>
+		</div>
+	</div>
 
 
 	<!-- Footer Start -->

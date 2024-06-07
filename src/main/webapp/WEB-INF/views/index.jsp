@@ -57,7 +57,7 @@
 			<div class="col-lg-3 col-6 text-right">
 				<!-- shopping  cart -->
 				 <a href="/shopCart" class="btn border"> <i
-					class="fas fa-shopping-cart text-primary"></i> <span class="badge">0</span>
+					class="fas fa-shopping-cart text-primary"></i> <span class="badge text-dark fs-6">${sessionScope.sizeCart}</span>
 				</a>
 			</div>
 		</div>
@@ -110,10 +110,25 @@
 							
 							
 						</div>
+						
+						
+						<c:if test="${userCurrent==null}">
 						<div class="navbar-nav ml-auto py-0">
-							<a href="/login" class="nav-item nav-link">Login</a> <a href="/login"
+							<a href="login-form" class="nav-item nav-link">Login</a>
+							 <a href="/register-form"
 								class="nav-item nav-link">Register</a>
 						</div>
+						
+						</c:if>
+						<c:if test="${userCurrent!=null}">
+						<div class="navbar-nav ml-auto py-0">
+							
+							 <a href="/infoCostumer"
+								class="nav-item nav-link">Thông tin tài khoản</a>
+						</div>
+						
+						</c:if>
+						
 					</div>
 				</nav>
 

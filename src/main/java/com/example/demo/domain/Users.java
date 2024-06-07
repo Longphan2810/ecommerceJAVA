@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,8 +24,10 @@ public class Users {
 	private String email;
 	private Date birhday;
 	private String phone;
+	private Boolean gender;
 	
-	private String passport;
+	@Column(columnDefinition = "nvarchar(225) ")
+	private String location;
 	private String name;
 	private boolean role;
 	

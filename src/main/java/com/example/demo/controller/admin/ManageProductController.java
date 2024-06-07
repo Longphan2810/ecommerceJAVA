@@ -332,7 +332,7 @@ public class ManageProductController {
 		model.addAttribute("productSizeXL", productSizeXL);
 
 		model.addAttribute("productDB", productDB);
-
+		model.addAttribute("pageCurrentAdmin", "QLSP");
 		return "adminViews/html/QuanLySanPham";
 	}
 

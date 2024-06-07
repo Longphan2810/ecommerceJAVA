@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import com.example.demo.domain.Product;
 import com.example.demo.domain.ProductDetail;
 
 import jakarta.transaction.Transactional;
@@ -17,4 +18,10 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, In
 	@Transactional
 	@Query("Delete from ProductDetail o where o.product.idProduct = ?1")
 	public void DeleteAllByIdProduct(int idProduct);
+	
+	public ProductDetail findByProductAndSize(Product product,String size);
+	
+	public ProductDetail findById(int id);
+	
+	
 }

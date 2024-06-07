@@ -25,80 +25,15 @@
 </head>
 <body>
 
-<!-- Topbar Start -->
-	<div class="container-fluid" >
+	<%@ include file="./component/navbarInfo.jsp"%>
 
-		<div class="row align-items-center py-3 px-xl-5">
-			<div class="col-lg-3 d-none d-lg-block">
-				<a href="/" class="text-decoration-none">
-					<h1 class="m-0 display-5 font-weight-semi-bold">Neko Shop</h1>
-				</a>
-			</div>
-			<div class="col-lg-6 col-6 text-left">
-				<form action="">
-					<div class="input-group">
-						<input type="text" class="form-control"
-							placeholder="Search for products">
-						<div class="input-group-append">
-							<a href="#"> <span
-								class="input-group-text bg-transparent text-primary h-100">
-									<i class="fa fa-search"></i>
-							</span>
-							</a>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="col-lg-3 col-6 text-right">
-				<!-- shopping cart -->
-				 <a href="/shopCart" class="btn border"> <i
-					class="fas fa-shopping-cart text-primary"></i> <span class="badge">0</span>
-				</a>
-			</div>
-		</div>
-	</div>
-	<!-- Topbar End -->
 
-	<!-- Navbar Start -->
-	<div class="container-fluid ">
-		<div class="row border-top px-xl-5">
-			
-			<div class="col-lg-12">
-				<nav
-					class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0"
-					style="background-color: white;">
-					<a href="" class="text-decoration-none d-block d-lg-none">
-						<h1 class="m-0 display-5 font-weight-semi-bold">neko shop</h1>
-					</a>
-							 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-					<div class="collapse navbar-collapse justify-content-between p-3" style="background: white"
-						id="navbarSupportedContent">
-						<div class="navbar-nav mr-auto py-0">
-							<a href="/" class="nav-item nav-link active">Home</a> <a
-								href="/shop" class="nav-item nav-link">Shop</a> 
-							
-							
-						</div>
-						<div class="navbar-nav ml-auto py-0">
-							<a href="/login" class="nav-item nav-link">Login</a> <a href="/login"
-								class="nav-item nav-link">Register</a>
-						</div>
-					</div>
-				</nav>
-			
-
-			</div>
-		</div>
-	</div>
-	<!-- Navbar End -->
-
+	
 
 
 
 	<!-- Page Header Start -->
-	<div class="container-fluid border-top my-3 m-auto row">
+	<div class="container-fluid  my-3 m-auto row">
 		<!-- side menu  -->
 		<div class="col-3 ">
 		
@@ -121,7 +56,7 @@
    <a href="/orderCostumer" class="list-group-item list-group-item-action">
    <i class="fa-solid fa-file-invoice me-3"></i> Quản lý đơn hàng</a>
  
-  <a href="/locationCostumer" class="list-group-item list-group-item-action">
+  <a href="/locationCostumer/list" class="list-group-item list-group-item-action">
    <i class="fa-solid fa-location-dot me-3"></i> Sổ địa chỉ</a>
   <a  class="list-group-item list-group-item-action">Coming soon . . .</a>
 </div>
@@ -139,44 +74,43 @@
 		<div class="my-3  ">
 		<span style="font-size: x-large;font-style: inherit;" >Thông tin cá nhân</span>
 		</div>
-		<form>
+		<form action="/infoCostumer/update" method="post">
+		<input type="hidden" value="${userCurrent.email}"  name="email" class="form-control" id="exampleInputEmail1" >
   <div class="mb-3">
     Họ và tên :
-    <input type="text" class="form-control" id="exampleInputEmail1" >
+    <input type="text" value="${userCurrent.name}"  name="name" class="form-control" id="exampleInputEmail1" >
     
   </div>
     <div class="mb-3">
     Ngày sinh :
-    <input type="date" class="form-control" id="exampleInputEmail1" >
+    <input type="date" value="${userCurrent.birhday}" required="required"	 name="birhdayYet" class="form-control" id="exampleInputEmail1" >
     
   </div>
    <div class="mb-3">
     Giới Tính :
     <div class="ms-3 form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+  <input class="form-check-input"  required="required" ${userCurrent.gender==true&&userCurrent.gender!=null?'checked':''} type="radio" name="gender" id="inlineRadio1" value="true">
   <label class="form-check-label" for="inlineRadio1">Nam</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+  <input class="form-check-input" required="required" ${userCurrent.gender==false&&userCurrent.gender!=null?'checked':''} type="radio" name="gender" id="inlineRadio2" value="false">
   <label class="form-check-label" for="inlineRadio2">Nu</label>
 </div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-  <label class="form-check-label" for="inlineRadio2">Khac</label>
-</div>
+
 </div>
     
      <div class="mb-3">
     
+   Số điện thoại :
+    <input type="text" value="${userCurrent.phone}"  name="phone" class="form-control" id="exampleInputEmail1" >
     
-  
-  Quốc tịch :
-    <select class="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
+</div>
+
+   <div class="mb-3">
+    
+   Địa chỉ :
+    <input type="text" value="${userCurrent.location}"  name="location" class="form-control" id="exampleInputEmail1" >
+    
 </div>
   
   <button type="submit" class="  btn btn-primary">Lưu thay đổi</button>
@@ -201,7 +135,7 @@
 						<div class="col-10 row">
 							<i class="fa-solid fa-phone col-2"></i>
 							<div class="col-10">
-								<span> Số điện thoại  <br> 09877547765
+								<span> Số điện thoại  <br> ${userCurrent.phone}
 								</span>
 							</div>
 						</div>
@@ -220,7 +154,7 @@
 						<div class="col-10 row">
 							<i class="fa-solid fa-envelope col-2"></i>
 							<div class="col-10">
-								<span> Email  <br> nguyenvana@gmail.com
+								<span> Email  <br> ${userCurrent.email}
 								</span>
 							</div>
 						</div>
@@ -254,7 +188,7 @@
 						<!-- button -->
 						<div  class="col-2">
 						<form >
-						<button type="submit" formaction="/changePassCostumer" formmethod="get" class="btn btn-outline-primary">Changes</button>
+						<button type="submit" formaction="/infoCostumer/password" formmethod="get" class="btn btn-outline-primary">Changes</button>
 						</form>
 						</div>
 

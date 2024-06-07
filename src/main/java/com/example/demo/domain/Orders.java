@@ -25,7 +25,7 @@ public class Orders {
 	private String  status;
 	private float amount;
 	@Temporal(TemporalType.DATE)
-	private Date orderDate;
+	private Date orderDate = new Date();
 
 	@ManyToOne()
 	@JoinColumn(name = "id_user")

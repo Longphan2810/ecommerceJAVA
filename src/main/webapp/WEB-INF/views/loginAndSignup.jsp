@@ -337,6 +337,7 @@ button{
   <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
 </svg> Back to home</a></div>
     <div class="form sign-in">
+    <form action="/login" method="post">
       <h2>Sign In</h2>
       <label>
         <span>Email Address</span>
@@ -345,8 +346,18 @@ button{
       <label>
         <span>Password</span>
         <input type="password" name="password">
+        
+        	 <%--alert  --%>
+   <div id="liveAlertPlaceholder" >	
+   <div class="${saiPass==true?'':'d-none'}">
+   	<div class="alert alert-danger alert-dismissible" role="alert">   
+   <div>Sai Mật khẩu !</div>   
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div></div></div>
+    <%--alert  --%>
+        
       </label>
-      <button class="submit" type="button">Sign In</button>
+      <button class="submit" type="submit">Sign In</button>
      
 
       <div class="social-media">
@@ -354,6 +365,7 @@ button{
         <a href="#">Forgot password ?</a>
        
       </div>
+      </form>
     </div>
 
     <div class="sub-cont">

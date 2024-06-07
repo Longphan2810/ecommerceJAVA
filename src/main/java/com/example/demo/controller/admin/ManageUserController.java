@@ -85,6 +85,7 @@ public class ManageUserController {
 		Users userDB = userServiceImpl.getById(idUser);
 		
 		model.addAttribute("userDB", userDB);
+		model.addAttribute("pageCurrentAdmin", "QLND");
 		return "adminViews/html/QuanLyNguoiDung";
 	}
 	
