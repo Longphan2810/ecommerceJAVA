@@ -104,6 +104,12 @@ public class ProductServiceImpl implements ProductServiceInterface {
 			Pageable pageable) {
 		return productRepository.findAllByPriceBetweenAndNameLike(minPrice, maxPrice, name, pageable);
 	}
+
+	public Page<Product> findAllByCategoryAndPriceBetweenAndNameLike(Category category, float minPrice, float maxPrice,
+			String name, Pageable pageable) {
+		return productRepository.findAllByCategoryAndPriceBetweenAndNameLike(category, minPrice, maxPrice, name,
+				pageable);
+	}
 	
 	
 	

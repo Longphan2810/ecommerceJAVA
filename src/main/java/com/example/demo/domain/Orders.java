@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,10 +26,14 @@ public class Orders {
 	private String  status;
 	private float amount;
 	private  String paymentMethod;
-	
+	@Column(columnDefinition = "nvarchar(225) ")
 	private String name;
+	@Column(columnDefinition = "nvarchar(225) ")
 	private String address;
+	@Column(columnDefinition = "nvarchar(225) ")
 	private String city;
+	
+	private String phone;
 	
 	@Temporal(TemporalType.DATE)
 	private Date orderDate = new Date();

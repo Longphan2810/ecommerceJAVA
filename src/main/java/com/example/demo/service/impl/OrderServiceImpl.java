@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuer
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Orders;
+import com.example.demo.domain.Users;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.service.OrderServiceInterface;
 
@@ -147,6 +148,14 @@ public class OrderServiceImpl implements OrderServiceInterface{
 
 	public void deleteAll() {
 		orderRepository.deleteAll();
+	}
+
+	public Page<Orders> findAllByUser(Users user, Pageable pageable) {
+		return orderRepository.findAllByUser(user, pageable);
+	}
+
+	public Page<Orders> findAllByIdOrder(int id, Pageable pageable) {
+		return orderRepository.findAllByIdOrder(id, pageable);
 	}
 	
 	

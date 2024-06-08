@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+	<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -78,7 +79,7 @@
 					<div class="container m-3">
 						<h3>Quản lý Sản phẩm</h3>
 
-						<form action="">
+						<form action="/admin/orders/update">
 							<div class="row py-3">
 
 								<!-- Dia chi giao -->
@@ -122,11 +123,13 @@
 												</div>
 
 												<div class="">
-													<select class="form-select"
+												<input value="${order.idOrder}" name="idOrder" type="hidden">
+													<select class="form-select"  name="status"
 														aria-label="Default select example">
-														<option selected>Đang xử lý</option>
-														<option value="1">Đã huỷ</option>
 														
+														<option ${order.status=='done'?'selected':''}  value="done">done</option>
+														<option ${order.status=='cancel'?'selected':''}  value="cancel">cancel</option>
+														<option ${order.status=='waiting'?'selected':''}  value="waiting">waiting</option>
 													</select>
 												</div>
 											</div>
@@ -147,150 +150,46 @@
 												<th>Price</th>
 												<th>Quantity</th>
 												<th>Total</th>
-												<th>Remove</th>
+											
 											</tr>
 										</thead>
 										<tbody class="align-middle">
-											<tr>
-												<td class="align-middle"><img src="/img/product-1.jpg"
-													alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-												<td class="align-middle">$150</td>
+										
+										<c:forEach var="orderDetail" items="${order.listOrderDetails}">
+										<tr>
+												<td class="align-middle"><img src="/imageProduct/${orderDetail.productDetail.product.nameImage}"
+													alt="" style="width: 50px;">${orderDetail.productDetail.product.name}</td>
+												<td class="align-middle">
+												<fmt:formatNumber value="${orderDetail.productDetail.product.price}"  type="currency"></fmt:formatNumber> VND
+												</td>
 												<td class="align-middle">
 													<div class="input-group quantity mx-auto"
 														style="width: 100px;">
 														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary btn-minus">
-																<i class="fa fa-minus"></i>
-															</button>
+															
 														</div>
-														<input type="text"
-															class="form-control form-control-sm  text-center"
-															value="1">
+														<input type="text" readonly="readonly"
+															class="form-control  form-control-sm  text-center"
+															value="${orderDetail.quanlity}">
 														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary btn-plus">
-																<i class="fa fa-plus"></i>
-															</button>
+															
 														</div>
 													</div>
 												</td>
-												<td class="align-middle">$150</td>
-												<td class="align-middle"><button
-														class="btn btn-sm btn-danger">
-														<i class="fa fa-times"></i>
-													</button></td>
-											</tr>
-											<tr>
-												<td class="align-middle"><img src="/img/product-2.jpg"
-													alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-												<td class="align-middle">$150</td>
 												<td class="align-middle">
-													<div class="input-group quantity mx-auto"
-														style="width: 100px;">
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary btn-minus">
-																<i class="fa fa-minus"></i>
-															</button>
-														</div>
-														<input type="text"
-															class="form-control form-control-sm  text-center"
-															value="1">
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary btn-plus">
-																<i class="fa fa-plus"></i>
-															</button>
-														</div>
-													</div>
+												<fmt:formatNumber value="${orderDetail.productDetail.product.price *orderDetail.quanlity}"  type="currency"></fmt:formatNumber> VND
+												
 												</td>
-												<td class="align-middle">$150</td>
-												<td class="align-middle"><button
-														class="btn btn-sm btn-danger">
-														<i class="fa fa-times"></i>
-													</button></td>
+												
 											</tr>
-											<tr>
-												<td class="align-middle"><img src="/img/product-3.jpg"
-													alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-												<td class="align-middle">$150</td>
-												<td class="align-middle">
-													<div class="input-group quantity mx-auto"
-														style="width: 100px;">
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary btn-minus">
-																<i class="fa fa-minus"></i>
-															</button>
-														</div>
-														<input type="text"
-															class="form-control form-control-sm  text-center"
-															value="1">
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary btn-plus">
-																<i class="fa fa-plus"></i>
-															</button>
-														</div>
-													</div>
-												</td>
-												<td class="align-middle">$150</td>
-												<td class="align-middle"><button
-														class="btn btn-sm btn-danger">
-														<i class="fa fa-times"></i>
-													</button></td>
-											</tr>
-											<tr>
-												<td class="align-middle"><img src="/img/product-4.jpg"
-													alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-												<td class="align-middle">$150</td>
-												<td class="align-middle">
-													<div class="input-group quantity mx-auto"
-														style="width: 100px;">
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary btn-minus">
-																<i class="fa fa-minus"></i>
-															</button>
-														</div>
-														<input type="text"
-															class="form-control form-control-sm  text-center"
-															value="1">
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary btn-plus">
-																<i class="fa fa-plus"></i>
-															</button>
-														</div>
-													</div>
-												</td>
-												<td class="align-middle">$150</td>
-												<td class="align-middle"><button
-														class="btn btn-sm btn-danger">
-														<i class="fa fa-times"></i>
-													</button></td>
-											</tr>
-											<tr>
-												<td class="align-middle"><img src="/img/product-5.jpg"
-													alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-												<td class="align-middle">$150</td>
-												<td class="align-middle">
-													<div class="input-group quantity mx-auto"
-														style="width: 100px;">
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary btn-minus">
-																<i class="fa fa-minus"></i>
-															</button>
-														</div>
-														<input type="text"
-															class="form-control form-control-sm  text-center"
-															value="1">
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary btn-plus">
-																<i class="fa fa-plus"></i>
-															</button>
-														</div>
-													</div>
-												</td>
-												<td class="align-middle">$150</td>
-												<td class="align-middle"><button
-														class="btn btn-sm btn-danger">
-														<i class="fa fa-times"></i>
-													</button></td>
-											</tr>
+										
+										</c:forEach>
+										
+											
+											
+											
+											
+											
 										</tbody>
 									</table>
 								</div>
@@ -309,7 +208,7 @@
 												</div>
 
 												<div class="">
-													<h4 class="font-weight-medium">999$</h4>
+													<h4 class="font-weight-medium"> <fmt:formatNumber value="${order.amount}"  type="currency"></fmt:formatNumber> </h4>
 												</div>
 											</div>
 
@@ -322,7 +221,7 @@
 
 
 								<div class="col-11 text-center ">
-									<button type="button" class="btn btn-outline-primary mx-2">Cập
+									<button type="submit" class="btn btn-outline-primary mx-2">Cập
 										Nhật</button>
 									
 									<button type="button" class="btn btn-outline-primary mx-2">Làm

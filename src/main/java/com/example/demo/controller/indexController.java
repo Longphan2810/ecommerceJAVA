@@ -53,12 +53,6 @@ public class indexController {
 
 	}
 	
-	@GetMapping("/orderCostumer")
-	public String getorderCostumer() {
-
-		return "orderCostumer";
-
-	}
 	
 	
 

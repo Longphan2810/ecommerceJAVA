@@ -25,12 +25,12 @@
 
 </head>
 <body>
-	
-	
-		<%@ include file="./component/navbarInfo.jsp"%>
 
 
-	
+	<%@ include file="./component/navbarInfo.jsp"%>
+
+
+
 
 
 	<!-- Page Header Start -->
@@ -44,9 +44,9 @@
 
 
 				<div class="ms-5 my-2">
-					Tài Khoản của <br> <span style="font-weight: bold;">Nguyen
-						van a </span>
-				</div>
+		Tài Khoản của <br>
+		<span style="font-weight: bold;">${sessionScope.userCurrent.name }</span>
+		</div>
 			</div>
 
 
@@ -54,11 +54,11 @@
 				<a href="/infoCostumer"
 					class="list-group-item list-group-item-action " aria-current="true">
 					<i class="fa-solid fa-user me-3"></i>Thông tin tài khoản
-				</a> <a href="/orderCostumer"
-					class="list-group-item list-group-item-action"> <i
+				</a> <a href="/orderCostumer/list"
+					class="list-group-item list-group-item-action active"> <i
 					class="fa-solid fa-file-invoice me-3"></i> Quản lý đơn hàng
 				</a> <a href="/locationCostumer/list"
-					class="list-group-item list-group-item-action "> <i
+					class="list-group-item list-group-item-action"> <i
 					class="fa-solid fa-location-dot me-3"></i> Sổ địa chỉ
 				</a> <a class="list-group-item list-group-item-action">Coming soon .
 					. .</a>
@@ -98,8 +98,8 @@
 							</div>
 							<div class="col-md-6">
 								<label for="inputPassword4" class="form-label">Số điện
-									thoại</label> <input type="text" required="required" minlength="10" name="phone"
-									class="form-control" id="inputPassword4">
+									thoại</label> <input type="text" required="required" minlength="10"
+									name="phone" class="form-control" id="inputPassword4">
 
 								<%--alert  --%>
 								<div id="liveAlertPlaceholder">
@@ -174,7 +174,7 @@
 
 	</div>
 	<!-- Page Header End -->
-<!--  thong bao -->
+	<!--  thong bao -->
 
 	<div class="toast-container  position-fixed bottom-0 end-0 p-3">
 		<div id="liveToast" class="toast ${message!=null?'show':''}"
@@ -188,7 +188,7 @@
 			<div class="toast-body">${message}</div>
 		</div>
 	</div>
-	
+
 
 
 	<!-- Footer Start -->

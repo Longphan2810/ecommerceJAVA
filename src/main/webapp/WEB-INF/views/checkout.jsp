@@ -34,15 +34,19 @@
 		<!-- Dia chi giao -->
 
 
-		<c:forEach var="element" items="${listDeliveryInUser}">
-
-			<c:if test="${element.status==true}">
 
 				<div class="card border-secondary w-100">
 					<div class="card-header   border">
 						<h4 class="font-weight-semi-bold m-0">Giao tới</h4>
 					</div>
+					
+					
 					<div class="card-body">
+					
+		<c:forEach var="element" items="${listDeliveryInUser}">
+
+			<c:if test="${element.status==true}">
+					
 						<div class="d-flex justify-content-between mb-3 pt-1">
 							<div>
 								<h6 class="font-weight-medium">${element.name}(
@@ -54,6 +58,11 @@
 									${element.city}</h6>
 							</div>
 						</div>
+						</c:if>
+
+
+		</c:forEach>
+						
 						<div class="d-flex justify-content-between">
 							<h6 class="font-weight-medium"></h6>
 							<h6 class="font-weight-medium">
@@ -61,17 +70,18 @@
 									data-bs-target="#exampleModal">Thay Đổi</a>
 							</h6>
 						</div>
+						
+
 					</div>
+
+
 
 				</div>
 
 
 
 
-			</c:if>
-
-
-		</c:forEach>
+			
 
 
 

@@ -21,4 +21,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	
 	public Page<Product> findAllByCategoryAndPriceBetween(Category category,float minPrice,float maxPrice,Pageable pageable);
 	
+	
+	public Page<Product> findAllByCategoryAndPriceBetweenAndNameLike(Category category,float minPrice,float maxPrice,String name,Pageable pageable);
 }

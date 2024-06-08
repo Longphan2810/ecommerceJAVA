@@ -25,12 +25,12 @@
 
 </head>
 <body>
-	
-	
-		<%@ include file="./component/navbarInfo.jsp"%>
 
 
-	
+	<%@ include file="./component/navbarInfo.jsp"%>
+
+
+
 
 
 	<!-- Page Header Start -->
@@ -44,9 +44,9 @@
 
 
 				<div class="ms-5 my-2">
-					Tài Khoản của <br> <span style="font-weight: bold;">Nguyen
-						van a </span>
-				</div>
+		Tài Khoản của <br>
+		<span style="font-weight: bold;">${sessionScope.userCurrent.name }</span>
+		</div>
 			</div>
 
 
@@ -54,11 +54,11 @@
 				<a href="/infoCostumer"
 					class="list-group-item list-group-item-action " aria-current="true">
 					<i class="fa-solid fa-user me-3"></i>Thông tin tài khoản
-				</a> <a href="/orderCostumer"
-					class="list-group-item list-group-item-action"> <i
+				</a> <a href="/orderCostumer/list"
+					class="list-group-item list-group-item-action active"> <i
 					class="fa-solid fa-file-invoice me-3"></i> Quản lý đơn hàng
 				</a> <a href="/locationCostumer/list"
-					class="list-group-item list-group-item-action "> <i
+					class="list-group-item list-group-item-action"> <i
 					class="fa-solid fa-location-dot me-3"></i> Sổ địa chỉ
 				</a> <a class="list-group-item list-group-item-action">Coming soon .
 					. .</a>
@@ -91,15 +91,18 @@
 
 						<form action="/locationCostumer/update-Address" method="post"
 							class="row g-3 m-3">
-							<input  type="hidden" name="idDeliveryAddress" value="${deliveryAddress.idDeliveryAddress}">
+							<input type="hidden" name="idDeliveryAddress"
+								value="${deliveryAddress.idDeliveryAddress}">
 							<div class="col-md-6">
 								<label for="inputEmail4" class="form-label">Họ và tên</label> <input
-									type="text" required="required" name="name" value="${deliveryAddress.name}"
-									class="form-control" id="inputEmail4">
+									type="text" required="required" name="name"
+									value="${deliveryAddress.name}" class="form-control"
+									id="inputEmail4">
 							</div>
 							<div class="col-md-6">
 								<label for="inputPassword4" class="form-label">Số điện
-									thoại</label> <input type="text" required="required" minlength="10" name="phone" value="${deliveryAddress.phone}"
+									thoại</label> <input type="text" required="required" minlength="10"
+									name="phone" value="${deliveryAddress.phone}"
 									class="form-control" id="inputPassword4">
 
 								<%--alert  --%>
@@ -118,7 +121,8 @@
 							</div>
 							<div class="col-12">
 								<label for="inputAddress" class="form-label">Tỉnh/Thành
-									phố</label> <input type="text" required="required" value="${deliveryAddress.city}" name="city"
+									phố</label> <input type="text" required="required"
+									value="${deliveryAddress.city}" name="city"
 									class="form-control" id="inputAddress"
 									placeholder="1234 Main St">
 							</div>
@@ -126,14 +130,16 @@
 
 							<div class="col-md-12">
 								<label for="inputCity" class="form-label">Địa chỉ</label> <input
-									type="text" value="${deliveryAddress.address}" required="required" class="form-control"
-									name="address" id="inputCity">
+									type="text" value="${deliveryAddress.address}"
+									required="required" class="form-control" name="address"
+									id="inputCity">
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-check">
-									<input class="form-check-input"  ${deliveryAddress.status?'checked':''} name="status" type="checkbox"
-										value="true" id="flexCheckDefault"> <label
+									<input class="form-check-input"
+										${deliveryAddress.status?'checked':''} name="status"
+										type="checkbox" value="true" id="flexCheckDefault"> <label
 										class="form-check-label" for="flexCheckDefault"> Địa
 										chỉ mặc định </label>
 								</div>
@@ -175,7 +181,7 @@
 
 	</div>
 	<!-- Page Header End -->
-<!--  thong bao -->
+	<!--  thong bao -->
 
 	<div class="toast-container  position-fixed bottom-0 end-0 p-3">
 		<div id="liveToast" class="toast ${message!=null?'show':''}"
@@ -189,7 +195,7 @@
 			<div class="toast-body">${message}</div>
 		</div>
 	</div>
-	
+
 
 
 	<!-- Footer Start -->

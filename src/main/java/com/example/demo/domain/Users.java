@@ -28,6 +28,7 @@ public class Users {
 	
 	@Column(columnDefinition = "nvarchar(225) ")
 	private String location;
+	@Column(columnDefinition = "nvarchar(225) ")
 	private String name;
 	private boolean role;
 	

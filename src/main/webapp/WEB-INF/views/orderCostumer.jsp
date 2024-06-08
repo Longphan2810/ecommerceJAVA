@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+	<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +28,8 @@
 
 </head>
 <body>
+	
+	
 	<%@ include file="./component/navbarInfo.jsp"%>
 
 
@@ -41,7 +47,7 @@
 		
 		<div class="ms-5 my-2">
 		Tài Khoản của <br>
-		<span style="font-weight: bold;">Nguyen van a </span>
+		<span style="font-weight: bold;">${sessionScope.userCurrent.name }</span>
 		</div>
 		</div>
 		
@@ -50,7 +56,7 @@
   <a href="/infoCostumer" class="list-group-item list-group-item-action " aria-current="true">
  <i class="fa-solid fa-user me-3"></i>Thông tin tài khoản
   </a>
-   <a href="/orderCostumer" class="list-group-item list-group-item-action active">
+   <a href="/orderCostumer/list" class="list-group-item list-group-item-action active">
    <i class="fa-solid fa-file-invoice me-3"></i> Quản lý đơn hàng</a>
   
   <a href="/locationCostumer/list" class="list-group-item list-group-item-action">
@@ -70,50 +76,43 @@
 		</div>
 		<!-- tìm đơn hàng -->
 		<div>
-		<form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Tìm theo mã đơn" aria-label="Search">
+		<form class="d-flex" action="/orderCostumer/search" method="post" role="search">
+        <input class="form-control me-2" type="search" name="idOrder" placeholder="Tìm theo mã đơn" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
 		</div>
 			<!-- tìm đơn hàng -->
 		
-		<!-- đơn hàng -->
 		
+		<c:forEach var="order" items="${pageOrders.content}">
+			<form action="/orderCostumer/chi-tiet-don" method="post">
+			<!-- đơn hàng -->
+			<input type="hidden" name="idOrder" value="${order.idOrder}">
 		<div class=" my-4 border shadow-sm " >
 		<!-- trạng thái đơn  -->
-		<div class="p-3 border-bottom " style="font-weight: lighter;"> Giao hàng thành công</div>
+		<div class="p-3 border-bottom " >Trạng thái đơn hàng : ${order.status} <span class="ms-5"> Mã đơn hàng :${order.idOrder}</span> </div>
 		<!-- sơ lượt sản phẩm -->
-		<div class="   py-3  border-bottom d-flex flex-nonwrap">
-			<!-- hình sản phẩm -->
-			<div class="col-2 ">
-			<img alt="" src="/img/cat-1.jpg" style="height: 80px ; width: 150px">
-			</div>
-			<!-- thong tin sản phẩm -->
-			<div class=" col-9 d-flex justify-content-between " style="font-weight: bolder;">
-			<span>Áo Polo Nam</span>
-			<span>999$</span>
-			
-			</div>
-		</div>
 		
-		<!-- sơ lượt sản phẩm -->
-		<div class="   py-3   border-bottom d-flex flex-nonwrap">
+			<c:forEach var="orderDetail" items="${order.listOrderDetails}">
+				<div class="   py-3  border-bottom d-flex flex-nonwrap">
 			<!-- hình sản phẩm -->
-			<div class="col-2 ">
-			<img alt="" src="/img/cat-1.jpg" style="height: 80px ; width: 150px">
+			<div class="col-2 me-5">
+			<img alt="" src="/imageProduct/${orderDetail.productDetail.product.nameImage}" style="height: 80px ; width: 150px">
 			</div>
 			<!-- thong tin sản phẩm -->
-			<div class=" col-9 d-flex justify-content-between " style="font-weight: bolder;">
-			<span>Áo Polo Nam</span>
-			<span>999$</span>
-			
+			<div class=" col-8 d-flex justify-content-between " style="font-weight: bolder;">
+			<span>${orderDetail.productDetail.product.name}</span>
+			<fmt:formatNumber value="${orderDetail.productDetail.product.price}"  type="currency"></fmt:formatNumber>
 			</div>
 		</div>
+			</c:forEach>
+	
+		
 		
 		<!-- Tông tien -->
 		<div class="  d-flex justify-content-around " >
 			<span></span>
-			<span>Tổng Tiền  : 999$</span>
+			<span>Tổng Tiền  : <fmt:formatNumber value="${order.amount}"  type="currency"></fmt:formatNumber> </span>
 			
 			</div>
 		
@@ -125,112 +124,18 @@
 		<div class=" py-3 d-flex justify-content-around " >
 			<span></span>
 			
-			<a href="/chitietdon" class="btn btn-outline-primary" role="button">Xem chi tiết</a>
+			<button type="submit" class="btn btn-outline-primary" role="button">Xem chi tiết</button>
 			
 			</div>
 		</div>
+		</form>
 		
 		<!-- đơn hàng  end -->
 		
 		
-			<!-- đơn hàng -->
+		</c:forEach>
 		
-		<div class=" my-4 border shadow-sm " >
-		<!-- trạng thái đơn  -->
-		<div class="p-3 border-bottom " style="font-weight: lighter;"> Giao hàng thành công</div>
-		<!-- sơ lượt sản phẩm -->
-		<div class="   py-3  border-bottom d-flex flex-nonwrap">
-			<!-- hình sản phẩm -->
-			<div class="col-2 ">
-			<img  alt="" src="/img/cat-2.jpg" style="height: 80px ; width: 150px">
-			</div>
-			<!-- thong tin sản phẩm -->
-			<div class=" col-9 d-flex justify-content-between " style="font-weight: bolder;">
-			<span>Áo Polo Nam</span>
-			<span>999$</span>
-			
-			</div>
-		</div>
-		
-		<!-- sơ lượt sản phẩm -->
-		<div class="   py-3  border-bottom d-flex flex-nonwrap">
-			<!-- hình sản phẩm -->
-			<div class="col-2 ">
-			<img alt="" src="/img/cat-3.jpg" style="height: 80px ; width: 150px">
-			</div>
-			<!-- thong tin sản phẩm -->
-			<div class=" col-9 d-flex justify-content-between " style="font-weight: bolder;">
-			<span>Áo Polo Nam</span>
-			<span>999$</span>
-			
-			</div>
-		</div>
-		
-		<!-- Tông tien -->
-		<div class="  d-flex justify-content-around " >
-			<span></span>
-			<span>Tổng Tiền  : 999$</span>
-			
-			</div>
-		
-		
-		
-			
-		<!-- btn xem dơn -->
-		
-		<div class=" py-3 d-flex justify-content-around " >
-			<span></span>
-			
-			<a href="/chitietdon" class="btn btn-outline-primary" role="button">Xem chi tiết</a>
-			
-			</div>
-		</div>
-		
-		<!-- đơn hàng  end -->
-		
-		
-			<!-- đơn hàng -->
-		
-		<div class=" my-4 border shadow-sm " >
-		<!-- trạng thái đơn  -->
-		<div class="p-3 border-bottom " style="font-weight: lighter;"> Giao hàng thành công</div>
 
-		<div class="   py-3  border-bottom d-flex flex-nonwrap">
-			<!-- hình sản phẩm -->
-			<div class="col-2 ">
-			<img alt="" src="/img/cat-2.jpg" style="height: 80px ; width: 150px">
-			</div>
-			<!-- thong tin sản phẩm -->
-			<div class=" col-9 d-flex justify-content-between " style="font-weight: bolder;">
-			<span>Áo Polo Nam</span>
-			<span>999$</span>
-			
-			</div>
-		</div>
-		
-		<!-- Tông tien -->
-		<div class="  d-flex justify-content-around " >
-			<span></span>
-			<span>Tổng Tiền  : 999$</span>
-			
-			</div>
-		
-		
-		
-		
-				
-		<!-- btn xem dơn -->
-		
-		<div class=" py-3 d-flex justify-content-around " >
-			<span></span>
-			
-			<a href="/chitietdon" class="btn btn-outline-primary" role="button">Xem chi tiết</a>
-			
-			</div>
-		</div>
-		<!-- đơn hàng  end -->
-		
-		
 		
 		
 		

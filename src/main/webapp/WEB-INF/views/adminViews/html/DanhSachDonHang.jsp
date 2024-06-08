@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@ taglib uri="jakarta.tags.core" prefix="c"%>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn"%>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt"%>
+
 <!doctype html>
 <html lang="en">
 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize </title>
+<title>Modernize</title>
 <link rel="shortcut icon" type="image/png"
 	href="/assets/images/logos/favicon.png" />
 <link rel="stylesheet" href="/assets/css/styles.min.css" />
@@ -42,26 +46,14 @@
 							<li class="nav-item dropdown"><a
 								class="nav-link nav-icon-hover" href="javascript:void(0)"
 								id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="/assets/images/profile/user-1.jpg" alt=""
-									width="35" height="35" class="rounded-circle">
+									<img src="/assets/images/profile/user-1.jpg" alt="" width="35"
+									height="35" class="rounded-circle">
 							</a>
 								<div
 									class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
 									aria-labelledby="drop2">
 									<div class="message-body">
-										<a href="javascript:void(0)"
-											class="d-flex align-items-center gap-2 dropdown-item"> <i
-											class="ti ti-user fs-6"></i>
-											<p class="mb-0 fs-3">My Profile</p>
-										</a> <a href="javascript:void(0)"
-											class="d-flex align-items-center gap-2 dropdown-item"> <i
-											class="ti ti-mail fs-6"></i>
-											<p class="mb-0 fs-3">My Account</p>
-										</a> <a href="javascript:void(0)"
-											class="d-flex align-items-center gap-2 dropdown-item"> <i
-											class="ti ti-list-check fs-6"></i>
-											<p class="mb-0 fs-3">My Task</p>
-										</a> <a href="./authentication-login.html"
+										 <a href="./authentication-login.html"
 											class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
 									</div>
 								</div></li>
@@ -76,215 +68,122 @@
 				<div class="shadow-lg border" style="height: 800px">
 
 					<div class="container m-3">
-						<h3>Danh Sách Sản Phẩm</h3>
+						<h3>Danh Sách đơn hàng</h3>
 						<!-- form tim kiem -->
-						<form action="">
 
-							<div class="row g-3">
-								<div class="col-6">
-									<input type="text" class="form-control"
-										placeholder="Tìm Tên sản phẩm, mã sản phẩm"
-										aria-label="First name">
+
+						<div class="row g-3">
+							<form action="/admin/list-orders">
+								<div class="row g-3 ">
+									<div class="col-8">
+										<input type="number" min="1" class="form-control"
+											placeholder="Tìm mã đơn hàng" name="keyword" aria-label="First name">
+									</div>
+
+									<div class="col-3 ">
+										<button type="submit" class="btn btn-secondary ">Tìm
+											kiếm</button>
+										<button type="button" class="btn btn-outline-primary  ">Làm
+											Mới</button>
+									</div>
 								</div>
-								<div class="col-3">
-									<input type="date" class="form-control"
-										
-										aria-label="First name">
-								</div>
-								<div class="col-3">
-									<button type="button" class="btn btn-secondary mx-2">Tìm
-										kiếm</button>
-									<button type="button" class="btn btn-outline-primary  mx-2">Làm
-										Mới</button>
-								</div>
+							</form>
+
+							<div class="col-12"></div>
+							<!-- table -->
+							<div class="col-11 mx-auto"
+								style="overflow-y: scroll; height: 500px;">
+
+								<table class="table table-light shadow border table-hover "
+									style="height: 500px">
+									<thead>
+										<tr>
+
+											<th scope="col">Mã Đơn Hàng</th>
+											<th scope="col">Ngày Đặt (yyyy-MM-dd)</th>
+											<th scope="col">Tên Khách Hàng</th>
+											<th scope="col">Tổng tiền</th>
+											<th scope="col">Trạng Thái</th>
+											<th scope="col">Thao Tác</th>
+										</tr>
+									</thead>
+									<tbody>
 
 
-								<div class="col-12">
-									<h4>999 Sản Phẩm</h4>
-								</div>
-								<!-- table -->
-								<div class="col-11 mx-auto"
-									style="overflow-y: scroll; height: 500px;">
-
-									<table class="table table-light shadow border table-hover "
-										style="height: 500px">
-										<thead>
+										<c:forEach var="order" items="${pageOrder.content}">
 											<tr>
-
-												<th scope="col">Mã Đơn Hàng</th>
-												<th scope="col">Ngày Đặt Hàng</th>
-												<th scope="col">Tên Khách Hàng</th>
-												<th scope="col">Tổng tiền</th>
-												<th scope="col">Trạng Thái</th>
-												<th scope="col">Thao Tác</th>
-											</tr>
-										</thead>
-										<tbody>
-
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
+												<td>${order.idOrder}</td>
+												<td><fmt:formatDate value="${order.orderDate}"
+														pattern="yyyy-MM-dd" /></td>
+												<td>${order.name}</td>
+												<td><fmt:formatNumber value="${order.amount}"
+														type="currency"></fmt:formatNumber> VND</td>
+												<td>${order.status}</td>
 												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
+													<form action="/admin/orders">
+														<input type="hidden" value="${order.idOrder}"
+															name="idOrder">
+														<button type="submit" class="btn btn-outline-primary">Cập
+															Nhật</button>
+													</form>
 												</td>
 											</tr>
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
-
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
-											<tr>
-												<td>13423</td>
-												<td>02/02/2002</td>
-												<td>Nguyen Van A</td>
-												<td>999$</td>
-												<td>Đang Giao</td>
-												<td>
-													<button type="button" class="btn btn-outline-primary">Cập
-														Nhật</button>
-												</td>
-											</tr>
+										</c:forEach>
 
 
 
 
 
-										</tbody>
-									</table>
 
 
-								</div>
 
-								<!-- paging -->
-								<div class="d-flex justify-content-center">
 
-									<nav aria-label="Page navigation example mx-auto">
-										<ul class="pagination">
-											<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#">Next</a></li>
-										</ul>
-									</nav>
-								</div>
+
+									</tbody>
+								</table>
+
+
+							</div>
+
+							<!-- paging -->
+							<div class="d-flex justify-content-center">
+
+								<nav aria-label="Page navigation example mx-auto">
+
+
+
+
+									<ul class="pagination justify-content-center mb-3">
+
+										<li class="page-item"><a class="page-link"
+											href="/admin/list-orders?p=0">First</a></li>
+
+										<c:forEach begin="1" var="i" step="1"
+											end="${pageOrder.totalPages}">
+											<li class="page-item"><a class="page-link"
+												href="/admin/list-orders?p=0${i-1}">${i}</a></li>
+
+										</c:forEach>
+
+										<li class="page-item"><a class="page-link"
+											href="/admin/list-orders?p=${pageOrder.totalPages-1}">Last</a></li>
+
+									</ul>
+
+
+								</nav>
+
+
 
 
 							</div>
 
 
+						</div>
 
-						</form>
+
+
+
 
 
 
@@ -299,10 +198,10 @@
 
 			</div>
 		</div>
-		
-		
-		
-		
+
+
+
+
 	</div>
 	<script src="/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

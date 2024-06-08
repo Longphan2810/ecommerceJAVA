@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
+	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +47,7 @@
 		
 		<div class="ms-5 my-2">
 		Tài Khoản của <br>
-		<span style="font-weight: bold;">Nguyen van a </span>
+		<span style="font-weight: bold;">${sessionScope.userCurrent.name }</span>
 		</div>
 		</div>
 		
@@ -53,7 +56,7 @@
   <a href="/infoCostumer" class="list-group-item list-group-item-action active" aria-current="true">
  <i class="fa-solid fa-user me-3"></i>Thông tin tài khoản
   </a>
-   <a href="/orderCostumer" class="list-group-item list-group-item-action">
+   <a href="/orderCostumer/list" class="list-group-item list-group-item-action">
    <i class="fa-solid fa-file-invoice me-3"></i> Quản lý đơn hàng</a>
  
   <a href="/locationCostumer/list" class="list-group-item list-group-item-action">
@@ -83,8 +86,9 @@
   </div>
     <div class="mb-3">
     Ngày sinh :
-    <input type="date" value="${userCurrent.birhday}" required="required"	 name="birhdayYet" class="form-control" id="exampleInputEmail1" >
-    
+       <fmt:formatDate var="birthdayUserCurrent" value="${userCurrent.birhday}" pattern="yyyy-MM-dd"/>
+    <input type="date" value="${birthdayUserCurrent}" required="required"	 name="birhdayYet" class="form-control" id="exampleInputEmail1" >
+ 
   </div>
    <div class="mb-3">
     Giới Tính :

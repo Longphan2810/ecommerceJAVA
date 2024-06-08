@@ -73,9 +73,10 @@ public class OrderController {
 				return "shopingCart";
 			}
 			
+			
+			handldePaymentCash();
 			shopCartService.clear();
 			model.addAttribute("message", "Đã đặt hàng thành công !");
-			handldePaymentCash();
 		}
 		if (paymentMethods.trim().equalsIgnoreCase("VNpay")) {
 
@@ -88,6 +89,8 @@ public class OrderController {
 
 		Users userCurrent = (Users) session.get("userCurrent");
 
+		DeliveryAddress da = deliveryAddressServiceImpl.findByUserAndStatus(userCurrent, true);
+		
 		Set<ItemForCart> keySet = shopCartService.getMap().keySet();
 
 		Map<ItemForCart, Integer> shopCart = shopCartService.getMap();
@@ -97,7 +100,10 @@ public class OrderController {
 		order.setAmount(shopCartService.getTotalPrice());
 		order.setStatus("waiting");
 		order.setPaymentMethod("cash");
-		order.setName(null);
+		order.setName(da.getName());
+		order.setAddress(da.getAddress());
+		order.setCity(da.getCity());
+		order.setPhone(da.getPhone());
 		orderServiceImpl.save(order);
 
 		for (ItemForCart itemForCart : keySet) {

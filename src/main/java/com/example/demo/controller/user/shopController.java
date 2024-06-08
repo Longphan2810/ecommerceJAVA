@@ -72,10 +72,12 @@ public class shopController {
 	@GetMapping("/shop/{category}/filter")
 	public String getShopByCategoryAndFilter(Model model, @PathVariable("category") String cateName,
 			@RequestParam("p") Optional<Integer> p, @RequestParam("sortBy") Optional<String> sortBy,
+			@RequestParam("keywords") Optional<String> keywords,
 			@RequestParam("filterByPrice") Optional<String> filterByPrice) {
 
 		Direction direc = null;
 		String nameSortBy = sortBy.orElse("price low to high");
+		String keywordsSearch = keywords.orElse("");
 
 		switch (nameSortBy) {
 		case "price low to high": {
@@ -135,8 +137,17 @@ public class shopController {
 
 		Category cate = categoryServiceImpl.findByNameLike(cateName);
 
-		Page<Product> listProduct = productServiceImpl.findAllByCategoryAndPriceBetween(cate, minPrice, maxPrice, page);
+		Page<Product> listProduct ;
 
+		if(keywordsSearch.trim().equalsIgnoreCase("")) {
+			// get page without  keyword
+			listProduct =  productServiceImpl.findAllByCategoryAndPriceBetween(cate, minPrice, maxPrice, page);
+			
+			} else {
+			 listProduct = productServiceImpl.findAllByCategoryAndPriceBetweenAndNameLike(cate, minPrice, maxPrice, "%"+keywordsSearch+"%", page);
+			}
+		
+		
 		listProduct.and(listProduct);
 
 		for (Product product : listProduct) {
@@ -145,6 +156,7 @@ public class shopController {
 
 		model.addAttribute("filterByPrice", filterByPrice.orElse("all"));
 		model.addAttribute("sortCurrent", nameSortBy);
+		model.addAttribute("keywords", keywordsSearch);
 		model.addAttribute("listProduct", listProduct);
 
 		return "shop";
