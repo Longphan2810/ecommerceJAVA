@@ -77,7 +77,7 @@
 		<!-- tìm đơn hàng -->
 		<div>
 		<form class="d-flex" action="/orderCostumer/search" method="post" role="search">
-        <input class="form-control me-2" type="search" name="idOrder" placeholder="Tìm theo mã đơn" aria-label="Search">
+        <input class="form-control me-2" type="number" name="idOrder" placeholder="Tìm theo mã đơn" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
 		</div>

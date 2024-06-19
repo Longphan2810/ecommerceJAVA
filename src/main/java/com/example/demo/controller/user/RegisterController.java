@@ -109,6 +109,7 @@ public class RegisterController {
 			userNeedConfirm.setTimeToken(null);
 			userNeedConfirm.setToken(null);
 			userNeedConfirm.setStatus("active");
+			userServiceImpl.save(userNeedConfirm);
 		} else {
 			userServiceImpl.delete(userNeedConfirm);
 			model.addAttribute("signup", "s-signup");
@@ -116,7 +117,7 @@ public class RegisterController {
 			return "forward:/register-form";
 			
 		}
-		
+		model.addAttribute("message", "Đã xác thực tài khoản!");
 		return "loginAndSignup";
 	}
 	

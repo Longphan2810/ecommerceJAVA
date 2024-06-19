@@ -55,10 +55,10 @@
   <a href="/infoCostumer" class="list-group-item list-group-item-action " aria-current="true">
  <i class="fa-solid fa-user me-3"></i>Thông tin tài khoản
   </a>
-   <a href="/orderCostumer/list" class="list-group-item list-group-item-action active">
+   <a href="/orderCostumer/list" class="list-group-item list-group-item-action ">
    <i class="fa-solid fa-file-invoice me-3"></i> Quản lý đơn hàng</a>
   
-  <a href="/locationCostumer/list" class="list-group-item list-group-item-action">
+  <a href="/locationCostumer/list" class="list-group-item list-group-item-action active">
    <i class="fa-solid fa-location-dot me-3"></i> Sổ địa chỉ</a>
   <a  class="list-group-item list-group-item-action">Coming soon . . .</a>
 </div>

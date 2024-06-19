@@ -72,6 +72,8 @@
 							
 							 <a href="/infoCostumer"
 								class="nav-item nav-link">Thông tin tài khoản</a>
+								 <a href="/log-out"
+								class="nav-item nav-link">Log-out</a>
 						</div>
 						
 						</c:if>

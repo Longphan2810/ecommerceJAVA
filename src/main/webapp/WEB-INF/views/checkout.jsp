@@ -198,10 +198,10 @@
 								Thanh toán bằng tiền mặt </label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio"
+							<input class="form-check-input" type="radio" 
 								name="paymentMethods" value="VNpay" id="flexRadioDefault2" >
 							<label class="form-check-label" for="flexRadioDefault2">
-								Thanh toán bằng VNpay (Coming soon) </label>
+								Thanh toán bằng VNpay  </label>
 						</div>
 
 					</div>
@@ -268,10 +268,12 @@
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-bs-dismiss="modal">Close</button>
+						
 						<button type="submit" class="btn btn-primary">Save
 							changes</button>
+						<button type="submit" formaction="/locationCostumer/add-form" formmethod="get" class="btn btn-primary">Thêm mới</button>
+					<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">Close</button>
 					</div>
 				</div>
 			</div>

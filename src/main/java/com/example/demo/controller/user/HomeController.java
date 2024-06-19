@@ -24,10 +24,10 @@ public class HomeController {
 	
 	
 	
-	@ModelAttribute("listProduct")
+	@ModelAttribute("listProductIndex")
 	public List<Product> getListProduct(){
 		
-		Pageable pageable = PageRequest.of(0, 9);
+		Pageable pageable = PageRequest.of(0, 8);
 		
 		
 		

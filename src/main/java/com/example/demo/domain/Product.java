@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 @Entity @Table(name = "Products",uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
-public class Product {
+public class Product  implements Serializable{
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProduct;

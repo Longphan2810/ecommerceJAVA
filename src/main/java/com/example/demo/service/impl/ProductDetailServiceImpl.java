@@ -91,6 +91,10 @@ public class ProductDetailServiceImpl implements ProductDetailServiceInterface {
 	public ProductDetail findById(int id) {
 		return productDetailRepository.findById(id);
 	}
+
+	public List<ProductDetail> findAllByProduct(Product product) {
+		return productDetailRepository.findAllByProduct(product);
+	}
 	
 	
 	

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.domain.Category;
 import com.example.demo.domain.Product;
+import com.example.demo.domain.ProductDetail;
 import com.example.demo.service.impl.CategoryServiceImpl;
 import com.example.demo.service.impl.ParamService;
+import com.example.demo.service.impl.ProductDetailServiceImpl;
 import com.example.demo.service.impl.ProductServiceImpl;
 
 @Controller
@@ -23,6 +25,9 @@ public class ProductDetailController {
 	
 	@Autowired
 	CategoryServiceImpl categoryServiceImpl;
+	
+	@Autowired
+	ProductDetailServiceImpl productDetailServiceImpl;
 	
 	@Autowired
 	ParamService paramService;
@@ -37,8 +42,9 @@ public class ProductDetailController {
 			Category cate = productDB.getCategory();
 			Pageable pageable = PageRequest.of(0, 6);
 			List<Product> listMayLike = productServiceImpl.findAllByCategory(cate, pageable).getContent();
+			List<ProductDetail> listProductDetail = productDetailServiceImpl.findAllByProduct(productDB);
 			
-			
+			model.addAttribute("listProductDetail", listProductDetail);
 			model.addAttribute("listMayLike", listMayLike);
 			model.addAttribute("productDB", productDB);
 			return "detail";

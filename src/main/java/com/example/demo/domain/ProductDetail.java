@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 @Entity @Table(name = "ProductDetail",uniqueConstraints = @UniqueConstraint(columnNames = {"size","id_Product"}))
-public class ProductDetail {
+public class ProductDetail implements  Serializable {
 	
 	@Id @Column(name = "id_Product_Detail" )
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

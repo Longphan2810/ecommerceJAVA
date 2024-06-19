@@ -1,14 +1,17 @@
 package com.example.demo.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Orders;
@@ -20,6 +23,9 @@ import com.example.demo.service.OrderServiceInterface;
 public class OrderServiceImpl implements OrderServiceInterface{
 
 	OrderRepository orderRepository;
+	
+	@Autowired
+	OrderDetailServiceImpl orderDetailServiceImpl;
 
 	public OrderServiceImpl(OrderRepository orderRepository) {
 		
@@ -157,7 +163,28 @@ public class OrderServiceImpl implements OrderServiceInterface{
 	public Page<Orders> findAllByIdOrder(int id, Pageable pageable) {
 		return orderRepository.findAllByIdOrder(id, pageable);
 	}
+
+	public Orders findBytransactionCode(String transactionCode) {
+		return orderRepository.findBytransactionCode(transactionCode);
+	}
 	
 	
+	public List<Orders> findAllByPayedVNpayFalse() {
+		return orderRepository.findAllByPayedVNpayFalse();
+	}
+
+	@Scheduled(fixedDelay = 60000*15)
+	public void clearOrderOutOfTimepayVNpay() {
+		List<Orders> list = this.findAllByPayedVNpayFalse(); 
+		Date date = new Date();
+		for (Orders orders : list) {
+			if(date.getTime()>orders.getCountDownTimeTranVNpay()) {
+				orderDetailServiceImpl.deleteAllByOrder(orders);
+				this.delete(orders);
+				
+			}
+		}
+		
+	}
 	
 }

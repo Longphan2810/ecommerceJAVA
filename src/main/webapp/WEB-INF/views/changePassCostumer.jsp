@@ -57,7 +57,7 @@
 				<a href="/infoCostumer"
 					class="list-group-item list-group-item-action " aria-current="true">
 					<i class="fa-solid fa-user me-3"></i>Thông tin tài khoản
-				</a> <a href="/orderCostumer"
+				</a> <a href="/orderCostumer/list"
 					class="list-group-item list-group-item-action"> <i
 					class="fa-solid fa-file-invoice me-3"></i> Quản lý đơn hàng
 				</a> <a href="/locationCostumer/list"

@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuer
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.OrderDetail;
+import com.example.demo.domain.Orders;
 import com.example.demo.repository.OrderDetailRepository;
 import com.example.demo.service.OrderServiceInterface;
 @Service
@@ -146,6 +147,10 @@ public class OrderDetailServiceImpl implements OrderServiceInterface {
 
 	public void deleteAll() {
 		orderDetailRepository.deleteAll();
+	}
+
+	public void deleteAllByOrder(Orders order) {
+		orderDetailRepository.deleteAllByOrder(order);
 	}
 
 	

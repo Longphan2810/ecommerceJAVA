@@ -29,7 +29,8 @@ public class AuthUserInterceptor implements HandlerInterceptor {
 			return false;
 		}
 		if (userCurrent.isRole()) {
-
+			session.set("userCurrent",null);
+			
 			response.sendRedirect("/login-form");
 
 			return false;

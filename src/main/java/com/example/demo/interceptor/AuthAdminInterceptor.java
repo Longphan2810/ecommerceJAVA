@@ -1,6 +1,7 @@
 package com.example.demo.interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.example.demo.domain.Users;
@@ -8,7 +9,7 @@ import com.example.demo.service.impl.SessionService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+@Component
 public class AuthAdminInterceptor implements HandlerInterceptor {
 
 	
@@ -22,18 +23,19 @@ public class AuthAdminInterceptor implements HandlerInterceptor {
 		
 		Users userCurrent = (Users) session.get("userCurrent");
 		
-		boolean check = true;
 		if(userCurrent==null) {
-			check = false;
+
+			response.sendRedirect("/admin-loginForm");
+			return false;
 		}
 		if(!userCurrent.isRole()) {
-			check = false;
-		}
+			
+			response.sendRedirect("/admin-loginForm");
+			return false;
+			}
 		
-		if(check==false) {
-			request.getRequestDispatcher("/login-form").forward(request, response);
-		}
-		return check;
+		
+		return true;
 		
 //		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}

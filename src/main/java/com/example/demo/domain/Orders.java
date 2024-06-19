@@ -32,8 +32,12 @@ public class Orders {
 	private String address;
 	@Column(columnDefinition = "nvarchar(225) ")
 	private String city;
-	
+	@Column(name = "phone")
 	private String phone;
+	
+	private String transactionCode;
+	private Boolean payedVNpay;
+	private Long countDownTimeTranVNpay;
 	
 	@Temporal(TemporalType.DATE)
 	private Date orderDate = new Date();

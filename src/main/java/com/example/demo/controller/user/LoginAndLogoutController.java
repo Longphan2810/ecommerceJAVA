@@ -29,6 +29,13 @@ public class LoginAndLogoutController {
 
 	}
 	
+	@GetMapping("/log-out")
+	public String getlogOut() {
+		sessionService.set("userCurrent",null);
+		return "forward:/";
+
+	}
+	
 	@PostMapping("/login")
 	public String getlogin(@RequestParam("email")String email,@RequestParam("password")String pass,Model model) {
 		Users userCurrent = userServiceImpl.findByEmail(email.trim());

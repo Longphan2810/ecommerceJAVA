@@ -63,6 +63,8 @@ public class OrderCostumerManagerController {
 		
 		Orders order = orderServiceImpl.getById(idOrder);
 		
+		System.out.println(order.getPhone());
+		
 		model.addAttribute("orderCurrent", order);
 		
 		return "chiTietDonCostumer";

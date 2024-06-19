@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.example.demo.interceptor.AuthAdminInterceptor;
 import com.example.demo.interceptor.AuthUserInterceptor;
 import com.example.demo.interceptor.GlobalInterceptor;
 
@@ -17,6 +18,9 @@ public class interConfig implements WebMvcConfigurer {
 	@Autowired
 	AuthUserInterceptor authUserInterceptor;
 	
+	@Autowired
+	AuthAdminInterceptor authAdminInterceptor;
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
@@ -25,6 +29,7 @@ public class interConfig implements WebMvcConfigurer {
 		registry.addInterceptor(authUserInterceptor).addPathPatterns("/locationCostumer/*","/checkout","/checkout/*","/infoCostumer"
 				,"/infoCostumer/*","/create-order","/orderCostumer/*","/addToCard","/shopCart","/shopCart/*");
 		
+		registry.addInterceptor(authAdminInterceptor).addPathPatterns("/admin/*","/admin");
 	}
 	
 }

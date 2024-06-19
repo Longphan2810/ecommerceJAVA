@@ -111,13 +111,13 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium">$0</h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$160</h5>
+                            <h5 class="font-weight-bold"> <fmt:formatNumber value="${totalPrice}" type="currency" ></fmt:formatNumber> </h5>
                         </div>
                         <form action="/checkout" method="get">
                         <button type="submit" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>

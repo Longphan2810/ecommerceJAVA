@@ -81,7 +81,7 @@
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         
                         <c:forEach var="cate" items="${listCate}">
-                         <a href="" class="nav-item nav-link">${cate.name}</a>
+                         <a href="/shop/${cate.name}" class="nav-item nav-link">${cate.name}</a>
                         </c:forEach>
                         
                        
@@ -125,6 +125,8 @@
 							
 							 <a href="/infoCostumer"
 								class="nav-item nav-link">Thông tin tài khoản</a>
+								 <a href="/log-out"
+								class="nav-item nav-link">Log-out</a>
 						</div>
 						
 						</c:if>
@@ -204,10 +206,10 @@
         <div class="text-center mb-4">
             <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
         </div>
-        <div class="row px-xl-5 pb-3">
+        <div class="row  container w-100 mx-auto  px-xl-5 pb-3">
           
-          <c:forEach var="product" items="${listProduct}">
-          <jsp:include page="./component/product.jsp">
+          <c:forEach var="product" items="${listProductIndex}">
+          <jsp:include page="./component/product2.jsp">
           <jsp:param value="${product.idProduct}" name="id"/>
           	<jsp:param value="${product.nameImage}" name="image"/>
          	 <jsp:param value="${product.name}" name="name"/>	

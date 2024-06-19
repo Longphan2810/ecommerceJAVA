@@ -84,7 +84,7 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
-                        <div> <h6 class="font-weight-medium">${orderCurrent.name} ( ${orderCurrent.phone} )</h6></div>
+                        <div> <h6 class="font-weight-medium">${orderCurrent.name} ${orderCurrent.phone} (  )</h6></div>
                            
                         <div class="w-50">   
                             <h6 class="font-weight-medium">${orderCurrent.address}, ${orderCurrent.city} </h6>
@@ -105,8 +105,12 @@
 		
 		<div class=" my-4 border shadow-sm " >
 		<!-- trạng thái đơn  -->
-		<div class="p-3 border-bottom " style="font-weight: lighter;"> Trạng thái đơn hàng : ${orderCurrent.status}</div>
+		<div class="p-3 border-bottom h5 " > Trạng thái đơn hàng : ${orderCurrent.status}
+		 <br>
+		<span class="  h5">Phương thức thanh toán : ${orderCurrent.paymentMethod}  ${orderCurrent.payedVNpay==true?'(Đã thanh toán)' :'' }${orderCurrent.payedVNpay==false?'(chưa thanh toán)' :'' }   </span>
 		
+		</div>
+	
 	<!-- sơ lượt sản phẩm -->
 		
 			<c:forEach var="orderDetail" items="${orderCurrent.listOrderDetails}">

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +53,7 @@
 				<h3 class="font-weight-semi-bold">${productDB.name}</h3>
 
 				<h4 class="font-weight-semi-bold mb-4">Price :
-					${productDB.price} VND</h4>
+					<fmt:formatNumber value="${productDB.price} " type="currency" ></fmt:formatNumber> VND</h4>
 				<p class="mb-4">${productDB.description} Volup erat ipsum diam
 					elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea.
 					Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat
@@ -60,21 +62,15 @@
 					rebum.</p>
 				<div class="d-flex mb-3 flex-nowrap">
 					<p class="text-dark font-weight-medium mb-0 mr-3 p-2">Size</p>
-
-						<span class="ms-1 border p-2 d-flex  flex-nowrap"> <input type="radio"
-							class="custom-control-input" id="size-1"  required="required" name="size" value="S"> <label
-							class="custom-control-label fs-6" for="size-1"> Size S <br> (Còn:999SP)</label>
+							
+							<c:forEach var="productDetail" items="${listProductDetail}">
+							<span class="ms-1 border p-2 d-flex  flex-nowrap"> <input type="radio"
+							class="custom-control-input" id="size-1${productDetail.size}"  required="required" name="size" value="${productDetail.size}"> <label
+							class="custom-control-label fs-6" for="size-1${productDetail.size}"> Size ${productDetail.size} <br> (Còn:${productDetail.quality}SP)</label>
 						</span> 
-						<span class="ms-3 border p-2" > <input type="radio"
-							class="custom-control-input" id="size-2" required="required" name="size" value="M"> <label
-							class="custom-control-label" for="size-2">Size M <br> (Còn:999SP)</label>
-						</span> <span class="ms-3 border p-2"> <input type="radio"
-							class="custom-control-input" id="size-3" required="required" name="size" value="L"> <label
-							class="custom-control-label" for="size-3">Size L<br> (Còn:999SP)</label>
-						</span> <span class="ms-3 border p-2"> <input type="radio"
-							class="custom-control-input" id="size-4"  required="required"name="size" value="XL"> <label
-							class="custom-control-label" for="size-4">Size XL <br> (Còn:999SP)</label>
-						</span>
+							</c:forEach>
+							
+						
 					
 				</div>
 

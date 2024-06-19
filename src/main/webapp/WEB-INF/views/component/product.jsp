@@ -1,5 +1,5 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
-
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
 						<div class="card product-item border mb-4">
 							<div
@@ -9,7 +9,9 @@
 							  <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                         <h6 class="text-truncate mb-3">${param.name }</h6>
                         <div class="d-flex justify-content-center">
-                        <h6 class="pe-2">${param.price} VND</h6>
+                        <h6 class="pe-2">
+                        <fmt:formatNumber value="${param.price} " type="currency" ></fmt:formatNumber>
+                        VND</h6>
                         
                         
               

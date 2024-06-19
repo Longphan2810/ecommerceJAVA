@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +22,8 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, In
 	public void DeleteAllByIdProduct(int idProduct);
 	
 	public ProductDetail findByProductAndSize(Product product,String size);
+	
+	public List<ProductDetail> findAllByProduct(Product product);
 	
 	public ProductDetail findById(int id);
 	

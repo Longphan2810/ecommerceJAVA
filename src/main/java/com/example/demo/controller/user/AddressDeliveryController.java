@@ -55,7 +55,7 @@ public class AddressDeliveryController {
 		}
 
 		try {
-			Integer.parseInt(deliveryAddress.getPhone());
+			Long.parseLong(deliveryAddress.getPhone());
 		} catch (Exception e) {
 			// TODO: handle exception
 			model.addAttribute("ValidatePhone", true);
@@ -104,7 +104,7 @@ public class AddressDeliveryController {
 		}
 
 		try {
-			Integer.parseInt(deliveryAddress.getPhone());
+			Long.parseLong(deliveryAddress.getPhone());
 		} catch (Exception e) {
 			// TODO: handle exception
 			model.addAttribute("ValidatePhone", true);
